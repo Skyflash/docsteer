@@ -164,6 +164,21 @@
   .navbar__links { display: none; }
 }
 @media (max-width: 560px) {
-  .brand__name { display: none; }
   .navbar__inner { gap: var(--sp-1); padding-inline: var(--sp-4); }
+
+  // The navbar is the only place on a phone that names the site — the hero
+  // headline is the page's title, not the project's. So the name stays and the
+  // brand is the one thing allowed to give way: the icon buttons hold their
+  // size, and a title too long for the row truncates instead of disappearing.
+  .brand { min-width: 0; }
+  .brand__name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .navbar__burger,
+  .brand__mark,
+  .brand__logo,
+  .navbar__tools { flex: none; }
 }
