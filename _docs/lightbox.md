@@ -45,10 +45,24 @@ docsteer:
 
 When disabled, `lightbox.js` is not even loaded.
 
-## Sample gallery
+## Try it — sample gallery
 
-![A soft blue gradient placeholder](https://placehold.co/1200x700/2f81f7/ffffff?text=Figure+1)
+Three images, so they form a gallery. Click any one, then use
+<kbd>←</kbd> / <kbd>→</kbd> to move between them and <kbd>Esc</kbd> to close.
+Each shows the same layout in a different skin.
 
-![A green gradient placeholder](https://placehold.co/1200x700/0f9d6e/ffffff?text=Figure+2)
+![The DocSteer layout in the aqua skin, light mode]({{ '/assets/images/sample-layout-aqua.svg' | relative_url }})
 
-![A purple gradient placeholder](https://placehold.co/1200x700/7c5cff/ffffff?text=Figure+3)
+![The DocSteer layout in the violet skin, dark mode]({{ '/assets/images/sample-layout-violet.svg' | relative_url }})
+
+![The DocSteer layout in the mint skin, light mode]({{ '/assets/images/sample-layout-mint.svg' | relative_url }})
+
+<div class="callout callout--note">
+  <span class="callout__icon"><i class="fa-solid fa-circle-info"></i></span>
+  <div>
+    <p class="callout__title">These are served from the theme</p>
+    <p>They are local SVG files, not calls to a placeholder service. A theme
+    that bundles its icons so a site works offline and behind a corporate
+    firewall should not then fetch its own demo images from a third party.</p>
+  </div>
+</div>

@@ -23,19 +23,25 @@ Gem::Specification.new do |spec|
   # Theme files only: the demo site's own content (_docs, _posts, _config.yml,
   # index.md …) must not ship. Two things this filter deliberately excludes:
   #
-  #   * the marketing images — DocSteer's own social card and README screenshot
-  #     are ~250 kB that every install would download for nothing;
+  #   * the demo-only images — DocSteer's own social card and README screenshot
+  #     are ~250 kB that every install would download for nothing, and the
+  #     sample-layout figures exist purely to demo the lightbox in the docs;
   #   * license.md, which is the demo site's *page*, not the licence. It used to
   #     slip in because the match was case-insensitive and caught "LICENSE".
-  marketing = %w[
+  #
+  # favicon.svg and logo.svg DO ship: they are the theme's default brand mark.
+  demo_only = %w[
     assets/images/og-default.png
     assets/images/screenshot.png
+    assets/images/sample-layout-aqua.svg
+    assets/images/sample-layout-violet.svg
+    assets/images/sample-layout-mint.svg
   ]
 
   spec.files = `git ls-files -z`.split("\x0").select { |f|
     f.match(%r{^(assets|_data|_layouts|_includes|_sass)/}) ||
       %w[LICENSE README.md].include?(f)
-  } - marketing
+  } - demo_only
 
   spec.required_ruby_version = ">= 2.7.0"
 
