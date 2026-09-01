@@ -182,3 +182,29 @@
   .hero { padding-block: var(--sp-7) var(--sp-6); }
   .hero__search { margin-top: var(--sp-6); }
 }
+
+@media (max-width: 560px) {
+  // Narrow enough that .link-section__grid has collapsed to one column. A
+  // full-width tile with the icon stacked above two short lines is mostly
+  // empty space, so the icon moves into a left column and the tile becomes as
+  // short as its text. Tiles configured without an icon keep the stacked
+  // layout — there is no first column for them to fill.
+  // Tiles this short need the gap between them to read as bigger than the gap
+  // between a tile's own two lines, or the column reads as one block.
+  .link-section__grid { gap: var(--sp-4); }
+
+  .link-tile:has(> i) {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: var(--sp-4);
+    row-gap: var(--sp-1);
+    padding: var(--sp-4);
+  }
+  .link-tile:has(> i) > i {
+    grid-row: 1 / span 2;
+    margin-bottom: 0;
+    font-size: 1.05rem;
+  }
+  .link-tile:has(> i) > .link-tile__title,
+  .link-tile:has(> i) > .link-tile__text { grid-column: 2; }
+}
