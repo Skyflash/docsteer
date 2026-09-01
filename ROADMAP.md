@@ -72,6 +72,25 @@ rather than forcing it, so such an image opens *smaller* than it appeared in the
 page. There is a fallback rule in `_sass/docsteer/_lightbox.scss`, but authoring
 the dimensions is the real fix.
 
+### Regenerating the social card
+
+`assets/images/og-default.png` must be exactly **1200×630** at DPR 1 — the
+1.91:1 ratio every platform crops to, and small enough that WhatsApp does not
+skip it (it drops previews over roughly 300 kB).
+
+It was captured from a throwaway 1200×630 HTML page, since no rasteriser is
+available on this machine. That page was removed once the card existed; recover
+it from history if the branding changes:
+
+```bash
+git log --all --oneline -- og-image.html     # find a commit that still has it
+git show <sha>:og-image.html > og-image.html
+```
+
+To capture at an exact size, use DevTools rather than a window screenshot:
+F12 → Ctrl+Shift+M → set Dimensions to `1200` × `630`, DPR `1`, zoom 100% →
+Ctrl+Shift+P → "Capture screenshot". That grabs the viewport precisely.
+
 ### Keep demo assets out of the gem
 
 `spec.files` in the gemspec subtracts a `demo_only` list. Any new image that
