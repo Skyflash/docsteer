@@ -49,7 +49,7 @@ sections:
       - { label: "Deploying",      url: "/docs/deploying/",      icon: "fa-solid fa-cloud-arrow-up", text: "GitHub Pages & more" }
 ---
 
-## Why another docs theme?
+## Fast *and* good-looking
 
 Most documentation themes make you choose between *fast* and *good-looking*.
 DocSteer is a static-first theme: the only JavaScript is a few kilobytes of
@@ -58,3 +58,16 @@ else is HTML and CSS custom properties.
 
 It is free and MIT-licensed. If it saves you a day of work, you can
 [buy me a coffee](https://www.buymeacoffee.com/cristiancastellari) — but you never have to.
+
+## Why "DocSteer"?
+
+**/dɒkˈstɪə/** — *dok-STEER*, stress on the second syllable, rhyming with *beer*.
+
+Because steering is the whole job. The sidebar, the search box and the table of
+contents are not decoration: they exist to point a reader at the one page they
+actually came for. A docs site that cannot do that is a folder of Markdown with
+a stylesheet on top.
+
+A *steer* is also a young ox. That was not the plan, but as a description of
+something that hauls a large pile of documentation around without complaining,
+it is hard to argue with — so I have made my peace with it.

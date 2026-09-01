@@ -92,6 +92,22 @@ faq:
     a: |
       Open an issue on the
       [GitHub repository](https://github.com/Skyflash/docsteer/issues).
+
+  # ── The one nobody needs but everybody asks ─────────────────
+  - section: About the name
+    q: Why "DocSteer", and how do I pronounce it?
+    a: |
+      **/dɒkˈstɪə/** — *dok-STEER*, stress on the second syllable, rhyming with
+      *beer*. Two syllables, not three.
+
+      The name is the job description: the sidebar, the search box and the
+      table of contents are all there to **steer** a reader to the page they
+      actually came for.
+
+      A *steer* is also a young ox. That was not the plan, but as a description
+      of something that hauls a large pile of documentation around without
+      complaining, it is hard to argue with. The full confession is
+      [on the home page](/).
 ---
 
 Short answers to what people ask most. Can't find yours? Press <kbd>/</kbd> to
