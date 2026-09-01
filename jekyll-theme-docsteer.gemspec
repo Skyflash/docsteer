@@ -20,9 +20,22 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
 
-  spec.files = `git ls-files -z`.split("\x0").select do |f|
-    f.match(%r{^(assets|_data|_layouts|_includes|_sass|LICENSE|README)}i)
-  end
+  # Theme files only: the demo site's own content (_docs, _posts, _config.yml,
+  # index.md …) must not ship. Two things this filter deliberately excludes:
+  #
+  #   * the marketing images — DocSteer's own social card and README screenshot
+  #     are ~250 kB that every install would download for nothing;
+  #   * license.md, which is the demo site's *page*, not the licence. It used to
+  #     slip in because the match was case-insensitive and caught "LICENSE".
+  marketing = %w[
+    assets/images/og-default.png
+    assets/images/screenshot.png
+  ]
+
+  spec.files = `git ls-files -z`.split("\x0").select { |f|
+    f.match(%r{^(assets|_data|_layouts|_includes|_sass)/}) ||
+      %w[LICENSE README.md].include?(f)
+  } - marketing
 
   spec.required_ruby_version = ">= 2.7.0"
 
@@ -31,6 +44,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "jekyll-sitemap", "~> 1.4"
   spec.add_runtime_dependency "jekyll-feed", "~> 0.17"
 
-  spec.add_development_dependency "bundler", ">= 2.0"
+  spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 13.0"
 end
