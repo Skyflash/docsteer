@@ -1,0 +1,193 @@
+@use "sass:list";
+@use "sass:map";
+
+// ── Colour skins ─────────────────────────────────────────────
+// Six curated palettes. Pick one in _config.yml:
+//   docsteer: { skin: aqua|violet|mint|ember|graphite|clay }
+//
+// Every value below becomes a CSS custom property, so nothing else in
+// the codebase references a raw colour — edit a map, restyle the theme.
+//
+//   aqua      azure → cyan       the safe default: product & API docs
+//   violet    violet → fuchsia   creative, design-system & SDK docs
+//   mint      teal → spring      fresh and technical: developer docs
+//   ember     rose → amber       warm: help centres & support portals
+//   graphite  monochrome ink     minimal and premium: internal wikis
+//   clay      warm paper + terracotta   editorial, long-form reading
+//
+// Contrast: every `brand` clears 4.5:1 against its own `bg`, so links
+// in body copy are AA-legible. Keep that in mind if you retune one.
+
+$skins: (
+  // ───────────── AQUA — azure → cyan ─────────────
+  aqua: (
+    ring: (218, 92%),
+    light: (
+      bg:#ffffff, bg-elev:#ffffff, bg-sunken:#f6f8fb, surface-2:#eef2f7,
+      text:#101828, text-soft:#51607a, text-faint:#7b8798,
+      border:#e6ebf2, border-strong:#d3dbe6,
+      brand:#1668f0, brand-strong:#0d51cc, brand-contrast:#ffffff, brand-soft:#e8f0fe,
+      link:#1668f0, accent:#00b4d8,
+      code-bg:#f7f9fc, shadow-color:218 45% 20%, selection:#cfe0ff,
+    ),
+    dark: (
+      bg:#0b0f16, bg-elev:#111722, bg-sunken:#080b11, surface-2:#17202e,
+      text:#e8eef7, text-soft:#a0adbe, text-faint:#6f7d90,
+      border:#1e2735, border-strong:#2c3746,
+      brand:#5fa3ff, brand-strong:#85baff, brand-contrast:#071022, brand-soft:#10243f,
+      link:#5fa3ff, accent:#3ad2ea,
+      code-bg:#0e141d, shadow-color:216 70% 2%, selection:#1c4a86,
+    ),
+  ),
+
+  // ───────────── VIOLET — violet → fuchsia ─────────────
+  violet: (
+    ring: (258, 90%),
+    light: (
+      bg:#ffffff, bg-elev:#ffffff, bg-sunken:#f8f6fd, surface-2:#f1ecfb,
+      text:#191428, text-soft:#565070, text-faint:#8a83a3,
+      border:#ebe5f7, border-strong:#dbd2ef,
+      brand:#6d3bf5, brand-strong:#5726df, brand-contrast:#ffffff, brand-soft:#efe9fe,
+      link:#6d3bf5, accent:#d946ef,
+      code-bg:#f8f6fd, shadow-color:258 45% 24%, selection:#ddd0ff,
+    ),
+    dark: (
+      bg:#100d1a, bg-elev:#171327, bg-sunken:#0b0914, surface-2:#201a33,
+      text:#ece8f8, text-soft:#aba3c6, text-faint:#7c7399,
+      border:#272040, border-strong:#362d55,
+      brand:#a98bff, brand-strong:#c0a8ff, brand-contrast:#120b26, brand-soft:#241b40,
+      link:#a98bff, accent:#e879f9,
+      code-bg:#151124, shadow-color:258 65% 3%, selection:#45308f,
+    ),
+  ),
+
+  // ───────────── MINT — teal → spring ─────────────
+  mint: (
+    ring: (170, 82%),
+    light: (
+      bg:#ffffff, bg-elev:#ffffff, bg-sunken:#f3faf8, surface-2:#e7f5f1,
+      text:#0e201c, text-soft:#46605a, text-faint:#7a938c,
+      border:#dcefe9, border-strong:#c5e3da,
+      brand:#0b8069, brand-strong:#086355, brand-contrast:#ffffff, brand-soft:#e0f5f0,
+      link:#0b8069, accent:#21c8a8,
+      code-bg:#f5faf9, shadow-color:170 40% 18%, selection:#b9ece1,
+    ),
+    dark: (
+      bg:#08130f, bg-elev:#0e1c18, bg-sunken:#050d0a, surface-2:#13251f,
+      text:#e0f2ec, text-soft:#9ab5ad, text-faint:#67827a,
+      border:#1a2d27, border-strong:#274038,
+      brand:#34e0bb, brand-strong:#5cebcb, brand-contrast:#04150f, brand-soft:#0c2e27,
+      link:#34e0bb, accent:#22d3ee,
+      code-bg:#0b1814, shadow-color:170 65% 2%, selection:#14584a,
+    ),
+  ),
+
+  // ───────────── EMBER — rose → amber ─────────────
+  ember: (
+    ring: (346, 82%),
+    light: (
+      bg:#ffffff, bg-elev:#ffffff, bg-sunken:#fdf6f5, surface-2:#fbeceb,
+      text:#26161a, text-soft:#6a5057, text-faint:#9c7d85,
+      border:#f5e3e2, border-strong:#eed0ce,
+      brand:#d81b45, brand-strong:#b41339, brand-contrast:#ffffff, brand-soft:#fde8ec,
+      link:#d81b45, accent:#f59e0b,
+      code-bg:#fdf7f6, shadow-color:346 45% 22%, selection:#ffd3dc,
+    ),
+    dark: (
+      bg:#150e11, bg-elev:#1e1418, bg-sunken:#0e090b, surface-2:#281b20,
+      text:#f6e9ec, text-soft:#c3a6ad, text-faint:#8f757c,
+      border:#2e2027, border-strong:#432f37,
+      brand:#ff6b8a, brand-strong:#ff90a6, brand-contrast:#1a0710, brand-soft:#3a1723,
+      link:#ff6b8a, accent:#fbbf24,
+      code-bg:#1a1216, shadow-color:346 60% 3%, selection:#7d2440,
+    ),
+  ),
+
+  // ───────────── GRAPHITE — monochrome ink ─────────────
+  graphite: (
+    ring: (215, 16%),
+    light: (
+      bg:#ffffff, bg-elev:#ffffff, bg-sunken:#f6f7f9, surface-2:#eef0f3,
+      text:#0c0f14, text-soft:#4d5560, text-faint:#7d8593,
+      border:#e4e7ec, border-strong:#d0d5dd,
+      brand:#0c0f14, brand-strong:#000000, brand-contrast:#ffffff, brand-soft:#e8ebf0,
+      link:#0c0f14, accent:#64748b,
+      code-bg:#f6f7f9, shadow-color:215 25% 16%, selection:#dfe3e9,
+    ),
+    dark: (
+      bg:#0a0b0d, bg-elev:#101215, bg-sunken:#070809, surface-2:#181b20,
+      text:#f2f4f7, text-soft:#a2aab6, text-faint:#6f7783,
+      border:#1e2126, border-strong:#2c3138,
+      brand:#f2f4f7, brand-strong:#ffffff, brand-contrast:#0a0b0d, brand-soft:#1c2026,
+      link:#f2f4f7, accent:#94a3b8,
+      code-bg:#0e1013, shadow-color:215 30% 1%, selection:#2b3138,
+    ),
+  ),
+
+  // ───────────── CLAY — warm paper + terracotta ─────────────
+  clay: (
+    ring: (18, 62%),
+    light: (
+      bg:#fdfaf6, bg-elev:#ffffff, bg-sunken:#f5efe7, surface-2:#efe7dc,
+      text:#1f1a15, text-soft:#5f5449, text-faint:#8d8175,
+      border:#ece3d8, border-strong:#ddd0c0,
+      brand:#b04a26, brand-strong:#8f3a1c, brand-contrast:#ffffff, brand-soft:#f8ebe2,
+      link:#b04a26, accent:#c98a3f,
+      code-bg:#f7f1e9, shadow-color:26 35% 20%, selection:#f2d9c4,
+    ),
+    dark: (
+      bg:#14100d, bg-elev:#1c1713, bg-sunken:#0d0a08, surface-2:#261f19,
+      text:#f2ebe2, text-soft:#b9aa9a, text-faint:#8a7b6c,
+      border:#2b2219, border-strong:#3e3227,
+      brand:#e0865c, brand-strong:#eda37e, brand-contrast:#180c06, brand-soft:#332015,
+      link:#e0865c, accent:#d9a55f,
+      code-bg:#191410, shadow-color:26 55% 2%, selection:#6b3a1f,
+    ),
+  ),
+);
+
+// Shared status colours (same across skins, tuned for contrast)
+:root {
+  --success:#15803d; --success-bg:#eaf6ee;
+  --warning:#a16207; --warning-bg:#fdf4e3;
+  --danger:#c02626;  --danger-bg:#fdecec;
+  --info:#1d4ed8;    --info-bg:#eaf0fd;
+}
+:root[data-mode="dark"], :root:not([data-mode="light"]) {
+  @media (prefers-color-scheme: dark) {
+    --success:#4ade80; --success-bg:#0f2016;
+    --warning:#fbbf24; --warning-bg:#221a0c;
+    --danger:#fb7185;  --danger-bg:#241014;
+    --info:#7dabff;    --info-bg:#101c33;
+  }
+}
+:root[data-mode="dark"] {
+  --success:#4ade80; --success-bg:#0f2016;
+  --warning:#fbbf24; --warning-bg:#221a0c;
+  --danger:#fb7185;  --danger-bg:#241014;
+  --info:#7dabff;    --info-bg:#101c33;
+}
+
+@mixin emit-vars($map) {
+  @each $key, $val in $map {
+    --#{$key}: #{$val};
+  }
+}
+
+@each $name, $data in $skins {
+  $ring: map.get($data, ring);
+  $light: map.get($data, light);
+  $dark: map.get($data, dark);
+  $sel: "" + $name;
+
+  [data-skin="#{$sel}"] {
+    @include emit-vars($light);
+    --brand-h: #{list.nth($ring, 1)};
+    --brand-s: #{list.nth($ring, 2)};
+
+    @media (prefers-color-scheme: dark) {
+      &:not([data-mode="light"]) { @include emit-vars($dark); }
+    }
+    &[data-mode="dark"] { @include emit-vars($dark); }
+  }
+}

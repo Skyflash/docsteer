@@ -1,0 +1,166 @@
+// ── Reusable components ──────────────────────────────────────
+
+// ── Buttons ──────────────────────────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  min-height: 42px;
+  padding: 0 var(--sp-5);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: var(--fs-base);
+  letter-spacing: var(--tr-snug);
+  line-height: 1;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.btn:hover { text-decoration: none; }
+.btn:active { transform: translateY(1px); }
+
+.btn--primary {
+  color: var(--brand-contrast);
+  background: var(--brand);
+  box-shadow: var(--shadow-sm);
+}
+.btn--primary:hover { background: var(--brand-strong); box-shadow: var(--shadow-md); }
+
+.btn--ghost {
+  color: var(--text);
+  background: var(--bg-elev);
+  border-color: var(--border-strong);
+}
+.btn--ghost:hover { border-color: var(--text-faint); background: var(--bg-sunken); }
+
+.btn--soft { color: var(--brand); background: var(--brand-soft); }
+.btn--soft:hover { background: var(--surface-2); }
+
+// ── Badges ───────────────────────────────────────────────────
+.badge {
+  display: inline-block;
+  padding: 1px 7px;
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  line-height: 1.5;
+  border-radius: var(--r-pill);
+  color: var(--brand-contrast);
+  background: var(--brand);
+}
+.badge--soft {
+  color: var(--brand);
+  background: var(--brand-soft);
+  border: 1px solid hsl(var(--brand-h) var(--brand-s) 55% / .18);
+}
+
+// ── Callouts / admonitions ───────────────────────────────────
+.callout {
+  --callout-tint: var(--info);
+  --callout-bg: var(--info-bg);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  margin-block: var(--sp-5);
+  border: 1px solid hsl(0 0% 0% / 0);
+  border-left: 3px solid var(--callout-tint);
+  border-radius: var(--r-sm) var(--r-md) var(--r-md) var(--r-sm);
+  background: var(--callout-bg);
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+}
+.callout__icon {
+  display: grid;
+  place-items: center;
+  width: 1.6em;
+  height: 1.6em;
+  margin-top: .05em;
+  font-size: var(--fs-base);
+  color: var(--callout-tint);
+}
+.callout > div > :last-child { margin-bottom: 0; }
+.callout > div > :first-child { margin-top: 0; }
+.callout__title {
+  font-weight: 650;
+  color: var(--text);
+  margin-bottom: var(--sp-1);
+  letter-spacing: var(--tr-snug);
+}
+.callout p { max-width: none; }
+.callout--note    { --callout-tint: var(--info);    --callout-bg: var(--info-bg); }
+.callout--tip     { --callout-tint: var(--success); --callout-bg: var(--success-bg); }
+.callout--warning { --callout-tint: var(--warning); --callout-bg: var(--warning-bg); }
+.callout--danger  { --callout-tint: var(--danger);  --callout-bg: var(--danger-bg); }
+
+// ── Cards ────────────────────────────────────────────────────
+.card {
+  padding: var(--sp-5);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+  text-decoration: none;
+}
+
+// ── Buy me a coffee ──────────────────────────────────────────
+.bmc {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 36px;
+  padding: 0 var(--sp-4);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-sm);
+  font-weight: 650;
+  color: #17202a;
+  background: #ffdd57;
+  border: 1px solid hsl(46 90% 46%);
+  white-space: nowrap;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+.bmc:hover {
+  text-decoration: none;
+  background: #ffe375;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px hsl(46 90% 45% / .35);
+}
+.bmc--compact { width: 36px; padding: 0; justify-content: center; }
+
+// ── Back to top ──────────────────────────────────────────────
+.to-top {
+  position: fixed;
+  right: var(--sp-5);
+  bottom: var(--sp-5);
+  z-index: 70;
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  color: var(--text-soft);
+  background: var(--bg-elev);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease),
+    color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.to-top:hover { color: var(--brand); border-color: var(--brand); }
+.to-top.is-visible { opacity: 1; transform: translateY(0); }
+
+// ── Loading shimmer ──────────────────────────────────────────
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--bg-sunken) 37%, var(--surface-2) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: var(--r-sm);
+}
+@keyframes shimmer { to { background-position: -200% 0; } }

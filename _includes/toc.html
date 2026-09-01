@@ -1,0 +1,11 @@
+{%- assign cfg = site.docsteer -%}
+<aside class="toc" id="toc" aria-label="On this page">
+  <p class="toc__title"><i class="fa-solid fa-list-ul" aria-hidden="true"></i> On this page</p>
+  <nav class="toc__nav" id="tocNav" data-min-headings="{{ cfg.toc.min_headings | default: 2 }}">
+    <!-- built from headings by main.js -->
+  </nav>
+
+  {% if cfg.buy_me_a_coffee.username and cfg.buy_me_a_coffee.show_in contains "toc" %}
+    <div class="toc__coffee">{% include buy-me-a-coffee.html %}</div>
+  {% endif %}
+</aside>

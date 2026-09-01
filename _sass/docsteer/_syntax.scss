@@ -1,0 +1,72 @@
+// ── Rouge syntax highlighting (theme-aware) ──────────────────
+:root {
+  --tok-comment:#8a919c;
+  --tok-keyword:#cf222e;
+  --tok-string:#0a7d33;
+  --tok-number:#0550ae;
+  --tok-function:#8250df;
+  --tok-variable:#953800;
+  --tok-type:#0550ae;
+  --tok-tag:#116329;
+  --tok-attr:#0550ae;
+  --tok-operator:#0f172a;
+  --tok-deleted-bg:#fbe9e7;
+  --tok-inserted-bg:#e6ffec;
+}
+:root[data-mode="dark"], :root:not([data-mode="light"]) {
+  @media (prefers-color-scheme: dark) {
+    --tok-comment:#7a828e;
+    --tok-keyword:#ff7b72;
+    --tok-string:#7ee787;
+    --tok-number:#79c0ff;
+    --tok-function:#d2a8ff;
+    --tok-variable:#ffa657;
+    --tok-type:#79c0ff;
+    --tok-tag:#7ee787;
+    --tok-attr:#79c0ff;
+    --tok-operator:#e6edf3;
+    --tok-deleted-bg:#3c1618;
+    --tok-inserted-bg:#12261e;
+  }
+}
+:root[data-mode="dark"] {
+  --tok-comment:#7a828e;
+  --tok-keyword:#ff7b72;
+  --tok-string:#7ee787;
+  --tok-number:#79c0ff;
+  --tok-function:#d2a8ff;
+  --tok-variable:#ffa657;
+  --tok-type:#79c0ff;
+  --tok-tag:#7ee787;
+  --tok-attr:#79c0ff;
+  --tok-operator:#e6edf3;
+  --tok-deleted-bg:#3c1618;
+  --tok-inserted-bg:#12261e;
+}
+
+.highlight, .highlight code { color: var(--text); background: transparent; }
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .cp, .highlight .cs { color: var(--tok-comment); font-style: italic; }
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt, .highlight .kc { color: var(--tok-keyword); }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr, .highlight .ss { color: var(--tok-string); }
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .mo, .highlight .il { color: var(--tok-number); }
+.highlight .nf, .highlight .fm { color: var(--tok-function); }
+.highlight .nb, .highlight .bp { color: var(--tok-function); }
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi { color: var(--tok-variable); }
+.highlight .nc, .highlight .nn, .highlight .no { color: var(--tok-type); }
+.highlight .nt { color: var(--tok-tag); }
+.highlight .na { color: var(--tok-attr); }
+.highlight .o, .highlight .ow, .highlight .p { color: var(--tok-operator); }
+.highlight .gd { background: var(--tok-deleted-bg); }
+.highlight .gi { background: var(--tok-inserted-bg); }
+.highlight .gh, .highlight .gu { color: var(--tok-number); font-weight: 700; }
+.highlight .err { color: var(--danger); }
+
+// Rouge line-numbers table
+.highlight .lineno {
+  color: var(--text-faint);
+  user-select: none;
+  -webkit-user-select: none;
+  padding-right: var(--sp-4);
+  border-right: 1px solid var(--border);
+  margin-right: var(--sp-4);
+}

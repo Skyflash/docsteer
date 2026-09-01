@@ -1,0 +1,13 @@
+// ── Print ────────────────────────────────────────────────────
+@media print {
+  .navbar, .sidebar, .toc, .site-footer, .to-top,
+  .search-modal, .lightbox, .doc-pager, .doc-head__edit,
+  .sidebar-scrim, .bmc { display: none !important; }
+
+  .page-shell, .doc-grid { display: block; max-width: none; }
+  .page-main { padding: 0; }
+  a { text-decoration: underline; }
+  .prose a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; color: #555; }
+  .prose pre, .prose table { break-inside: avoid; }
+  body { color: #000; background: #fff; }
+}

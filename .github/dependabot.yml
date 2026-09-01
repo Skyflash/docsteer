@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # Now that Gemfile.lock is committed, versions no longer drift on their own.
+  # Dependabot proposes the updates instead, as PRs you can review and revert.
+  - package-ecosystem: bundler
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+
+  # The pinned action versions in pages.yml go stale too.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly

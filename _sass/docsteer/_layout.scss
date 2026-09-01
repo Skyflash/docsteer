@@ -1,0 +1,52 @@
+// ── App shell / grid ─────────────────────────────────────────
+.page-shell {
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  display: grid;
+  // Single column by default. The sidebar column is reserved only when the
+  // sidebar was actually rendered (.has-sidebar comes from default.html), so a
+  // layout can never leave an empty column holding the content hostage.
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+.page-shell.has-sidebar { grid-template-columns: var(--sidebar-w) minmax(0, 1fr); }
+
+.page-main {
+  min-width: 0;
+  padding: var(--sp-7) var(--sp-6) var(--sp-9);
+}
+.layout-page .page-main,
+.layout-home .page-main { padding-inline: 0; }
+
+// Doc: content + optional TOC
+.doc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp-7);
+  max-width: calc(var(--content-max) + var(--toc-w) + 48px);
+  margin-inline: auto;
+}
+.doc-grid.has-toc {
+  grid-template-columns: minmax(0, 1fr) var(--toc-w);
+}
+
+.prose { max-width: var(--content-max); }
+.prose.is-wide { max-width: none; }
+
+// Page (non-doc) content centring
+.layout-page .prose {
+  margin-inline: auto;
+  padding: var(--sp-7) var(--sp-5) var(--sp-9);
+}
+
+@media (max-width: 1180px) {
+  .doc-grid.has-toc { grid-template-columns: minmax(0, 1fr); }
+  .toc { display: none; }
+}
+
+@media (max-width: 960px) {
+  // Must out-specify .page-shell.has-sidebar to collapse into the drawer.
+  .page-shell,
+  .page-shell.has-sidebar { grid-template-columns: minmax(0, 1fr); }
+  .page-main { padding: var(--sp-5) var(--sp-5) var(--sp-8); }
+}

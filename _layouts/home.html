@@ -1,0 +1,74 @@
+---
+layout: default
+---
+{%- assign cfg = site.docsteer -%}
+<div class="home">
+
+  <section class="hero">
+    <div class="hero__inner">
+      {% if page.hero.eyebrow %}<p class="hero__eyebrow">{{ page.hero.eyebrow }}</p>{% endif %}
+      <h1 class="hero__title">{{ page.hero.title | default: site.title }}</h1>
+      <p class="hero__lead">{{ page.hero.lead | default: site.tagline }}</p>
+
+      <div class="hero__actions">
+        {% for btn in page.hero.buttons %}
+          <a class="btn {{ btn.style | default: 'btn--primary' }}" href="{{ btn.url | relative_url }}">
+            {% if btn.icon %}<i class="{{ btn.icon }}" aria-hidden="true"></i>{% endif %}
+            {{ btn.label }}
+          </a>
+        {% endfor %}
+      </div>
+
+      {% if site.docsteer.search.enabled %}
+      <button class="hero__search" data-search-open type="button">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <span>{{ cfg.search.placeholder | default: "Search the docs…" }}</span>
+        {% if cfg.search.hotkey %}<kbd>/</kbd>{% endif %}
+      </button>
+      {% endif %}
+    </div>
+    <div class="hero__glow" aria-hidden="true"></div>
+  </section>
+
+  {% if page.features %}
+  <section class="features">
+    <div class="features__grid">
+      {% for f in page.features %}
+      <article class="feature-card">
+        <span class="feature-card__icon"><i class="{{ f.icon }}" aria-hidden="true"></i></span>
+        <h3>{{ f.title }}</h3>
+        <p>{{ f.text }}</p>
+        {% if f.url %}<a class="feature-card__link" href="{{ f.url | relative_url }}">Learn more <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>{% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.sections %}
+    {% for s in page.sections %}
+    <section class="link-section">
+      <div class="link-section__head">
+        <h2>{{ s.title }}</h2>
+        {% if s.text %}<p>{{ s.text }}</p>{% endif %}
+      </div>
+      <div class="link-section__grid">
+        {% for l in s.links %}
+        <a class="link-tile" href="{{ l.url | relative_url }}">
+          {% if l.icon %}<i class="{{ l.icon }}" aria-hidden="true"></i>{% endif %}
+          <span class="link-tile__title">{{ l.label }}</span>
+          {% if l.text %}<span class="link-tile__text">{{ l.text }}</span>{% endif %}
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+  {% endif %}
+
+  {% if page.content != "" %}
+  <section class="home__prose prose">
+    {{ content }}
+  </section>
+  {% endif %}
+
+</div>

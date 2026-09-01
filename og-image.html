@@ -1,0 +1,97 @@
+---
+layout: null
+sitemap: false
+search: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ site.title }} — social share image</title>
+<!--
+  A 1200×630 canvas for producing the Open Graph / social preview image.
+  Nothing links to this page; it exists only to be screenshotted once.
+
+  How to capture it:
+    1. bundle exec jekyll serve
+    2. open http://localhost:4000{{ site.baseurl }}/og-image.html
+    3. DevTools → device toolbar → set the viewport to exactly 1200 × 630
+    4. Command palette (Ctrl/Cmd+Shift+P) → "Capture screenshot"
+    5. save as assets/images/og-default.png
+
+  Then set it as the site-wide share image in _config.yml:
+    defaults:
+      - scope: { path: "" }
+        values:
+          image: /assets/images/og-default.png
+-->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    display: flex; flex-direction: column; justify-content: center;
+    gap: 30px; padding: 84px 90px;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: #e8eef7;
+    background:
+      radial-gradient(1100px 620px at 82% -12%, rgba(0,180,216,.30), transparent 62%),
+      radial-gradient(900px 560px at 6% 108%, rgba(22,104,240,.34), transparent 60%),
+      #0b0f16;
+  }
+  .mark { display: flex; align-items: center; gap: 22px; }
+  .tile {
+    width: 86px; height: 86px; border-radius: 20px; flex: none;
+    background: linear-gradient(135deg, #1668f0, #00b4d8);
+    display: grid; place-items: center;
+  }
+  .name { font-size: 50px; font-weight: 800; letter-spacing: -1.4px; }
+  h1 {
+    flex: none;
+    font-size: 72px; line-height: 1.06; font-weight: 800; letter-spacing: -2.4px;
+    max-width: 20ch;
+  }
+  .accent { color: #5fa3ff; }
+  p { font-size: 30px; color: #a0adbe; max-width: 34ch; line-height: 1.4; }
+  .pills { display: flex; gap: 12px; flex-wrap: wrap; }
+  .pill {
+    font-size: 21px; font-weight: 600; color: #cfe0ff;
+    padding: 9px 20px; border-radius: 999px;
+    background: rgba(95,163,255,.12);
+    border: 1px solid rgba(95,163,255,.30);
+  }
+  /* flex:none — without it the shrink factor collapses a 5px item to nothing
+     as soon as the column runs out of room. */
+  .rule { flex: none; height: 5px; width: 128px; border-radius: 3px;
+          background: linear-gradient(90deg, #1668f0, #00b4d8); }
+</style>
+</head>
+<body>
+  <div class="mark">
+    <span class="tile">
+      <svg width="48" height="48" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M32 11 L42 32 L22 32 Z" fill="#fff"/>
+        <path d="M22 32 L42 32 L32 53 Z" fill="#fff" opacity=".45"/>
+      </svg>
+    </span>
+    <span class="name">{{ site.title }}</span>
+  </div>
+
+  <div class="rule"></div>
+
+  {%- comment -%}
+    The subline must NOT repeat the headline — say what this actually is.
+    Nothing else on the card tells you it is a Jekyll theme.
+  {%- endcomment -%}
+  <h1>Simple, searchable <span class="accent">docs</span> for teams</h1>
+  <p>A free Jekyll theme for documentation, help centres and internal knowledge bases.</p>
+
+  <div class="pills">
+    <span class="pill">6 colour skins</span>
+    <span class="pill">Dark mode</span>
+    <span class="pill">Live search</span>
+    <span class="pill">FAQ pages</span>
+    <span class="pill">Zero dependencies</span>
+    <span class="pill">MIT</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+---
+layout: doc
+---
+{%- comment -%}
+  DocSteer — FAQ layout.
+
+  Inherits everything from `doc` (sidebar, TOC, edit link, doc footer) and adds
+  the accordion plus FAQPage structured data.
+
+  Questions come from the page front matter:
+
+      layout: faq
+      faq:
+        - section: Billing          # optional grouping
+          q: Is it free?
+          a: |
+            Markdown **is** allowed here.
+
+  …or from a shared data file, with `faq_data: faq` reading `_data/faq.yml`.
+{%- endcomment -%}
+{%- assign cfg = site.docsteer.faq -%}
+{%- if page.faq_data -%}
+  {%- assign faq_items = site.data[page.faq_data] -%}
+{%- else -%}
+  {%- assign faq_items = page.faq -%}
+{%- endif -%}
+
+{{ content }}
+
+{%- if cfg.enabled != false -%}
+{% include faq-list.html items=faq_items %}
+
+{%- if cfg.schema and faq_items and faq_items.size > 0 %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{% for item in faq_items %}
+    {
+      "@type": "Question",
+      "name": {{ item.q | strip_html | normalize_whitespace | jsonify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ item.a | markdownify | strip_html | normalize_whitespace | jsonify }}
+      }
+    }{% unless forloop.last %},{% endunless %}{% endfor %}
+  ]
+}
+</script>
+{%- endif -%}
+{%- endif -%}

@@ -1,0 +1,44 @@
+# Top navigation (navbar)
+main:
+  - title: Docs
+    url: /docs/introduction/
+    icon: fa-solid fa-book
+  - title: Guides
+    url: /docs/live-search/
+    icon: fa-solid fa-compass
+  - title: Blog
+    url: /blog/
+    icon: fa-solid fa-newspaper
+
+# Left sidebar — grouped. `open: true` forces a group expanded.
+sidebar:
+  - title: Getting started
+    icon: fa-solid fa-rocket
+    open: true
+    children:
+      - { title: Introduction,     url: /docs/introduction/ }
+      - { title: Installation,     url: /docs/installation/ }
+      - { title: Your first docs site,      url: /docs/first-docs-site/ }
+      - { title: Your first knowledge base, url: /docs/first-knowledge-base/ }
+      - { title: Your first FAQ,            url: /docs/first-faq/ }
+      - { title: Configuration,    url: /docs/configuration/ }
+
+  - title: Customisation
+    icon: fa-solid fa-paintbrush
+    children:
+      - { title: Colour skins,     url: /docs/skins/,        badge: "6" }
+      - { title: Navigation,       url: /docs/navigation/ }
+      - { title: Writing content,  url: /docs/writing-content/ }
+
+  - title: Features
+    icon: fa-solid fa-wand-magic-sparkles
+    children:
+      - { title: Live search,      url: /docs/live-search/ }
+      - { title: Image lightbox,   url: /docs/lightbox/ }
+      - { title: SEO & performance, url: /docs/seo-performance/ }
+
+  - title: Reference
+    icon: fa-solid fa-circle-info
+    children:
+      - { title: Deploying,        url: /docs/deploying/ }
+      - { title: FAQ,              url: /docs/faq/ }

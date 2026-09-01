@@ -1,0 +1,169 @@
+// ── Top navbar ───────────────────────────────────────────────
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  height: var(--nav-h);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+}
+// Fallback for browsers without color-mix
+@supports not (background: color-mix(in srgb, red 50%, blue)) {
+  .navbar { background: var(--bg); }
+}
+
+.navbar__inner {
+  height: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: var(--sp-5);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+// ── Brand ────────────────────────────────────────────────────
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-weight: 650;
+  letter-spacing: var(--tr-snug);
+  color: var(--text);
+}
+.brand:hover { text-decoration: none; }
+.brand__logo { height: 26px; width: auto; }
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--brand-contrast);
+  background: linear-gradient(140deg, var(--brand), var(--accent));
+}
+.brand__name { font-size: 1rem; }
+
+// ── Primary links ────────────────────────────────────────────
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: var(--sp-4);
+}
+.navbar__link {
+  position: relative;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-sm);
+  color: var(--text-soft);
+  font-size: var(--fs-sm);
+  font-weight: 550;
+  transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.navbar__link:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
+.navbar__link.is-active {
+  color: var(--brand);
+  background: var(--brand-soft);
+  font-weight: 650;
+}
+.navbar__link i { margin-right: 6px; opacity: .7; font-size: .9em; }
+
+// ── Tools ────────────────────────────────────────────────────
+.navbar__tools { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+
+.navbar__icon-btn {
+  display: grid;
+  place-items: center;
+  width: 36px; height: 36px;
+  border-radius: var(--r-sm);
+  color: var(--text-soft);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.navbar__icon-btn:hover { color: var(--text); background: var(--surface-2); }
+
+// dark-mode icon swap
+.icon-dark { display: none; }
+[data-mode="dark"] .icon-light { display: none; }
+[data-mode="dark"] .icon-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-mode="light"]) .icon-light { display: none; }
+  :root:not([data-mode="light"]) .icon-dark { display: block; }
+}
+
+.navbar__burger { display: none; width: 36px; height: 36px; place-items: center; border-radius: var(--r-sm); color: var(--text-soft); }
+.navbar__burger:hover { background: var(--surface-2); }
+
+// ── Skin picker ──────────────────────────────────────────────
+.skin-picker { position: relative; }
+.skin-picker__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 190px;
+  padding: var(--sp-2);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  display: none;
+  z-index: 95;
+}
+.skin-picker.is-open .skin-picker__menu {
+  display: grid;
+  gap: 1px;
+  animation: menu-in .14s var(--ease-out);
+}
+@keyframes menu-in { from { opacity: 0; transform: translateY(-4px); } }
+
+.skin-picker__opt {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  text-align: left;
+  color: var(--text-soft);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.skin-picker__opt:hover { background: var(--surface-2); color: var(--text); }
+.skin-picker__opt[aria-checked="true"] { color: var(--text); font-weight: 650; }
+// Selected marker: a small filled dot, drawn in CSS (no icon dependency)
+.skin-picker__opt::after {
+  content: "";
+  width: 6px; height: 6px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: var(--brand);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+.skin-picker__opt[aria-checked="true"]::after { opacity: 1; }
+.skin-picker__label { flex: 1; }
+
+.skin-dot {
+  width: 15px; height: 15px;
+  flex: none;
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 1px hsl(0 0% 0% / .14);
+}
+.skin-dot--aqua     { background: linear-gradient(140deg,#1668f0,#00b4d8); }
+.skin-dot--violet   { background: linear-gradient(140deg,#6d3bf5,#d946ef); }
+.skin-dot--mint     { background: linear-gradient(140deg,#0b8069,#21c8a8); }
+.skin-dot--ember    { background: linear-gradient(140deg,#d81b45,#f59e0b); }
+.skin-dot--graphite { background: linear-gradient(140deg,#0c0f14,#64748b); }
+.skin-dot--clay     { background: linear-gradient(140deg,#b04a26,#c98a3f); }
+
+@media (max-width: 960px) {
+  .navbar__burger { display: grid; }
+  .navbar__links { display: none; }
+}
+@media (max-width: 560px) {
+  .brand__name { display: none; }
+  .navbar__inner { gap: var(--sp-1); padding-inline: var(--sp-4); }
+}
