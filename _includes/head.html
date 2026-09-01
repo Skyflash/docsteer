@@ -46,7 +46,7 @@
   {% endif %}
 
   {% if cfg.search.enabled %}
-    <link rel="preload" as="fetch" href="{{ '/search.json' | relative_url }}" crossorigin>
+    <link rel="preload" as="fetch" href="{{ '/search.json' | relative_url }}?v={{ ds_index_v }}" crossorigin>
   {% endif %}
 
   {% if cfg.analytics.plausible_domain %}

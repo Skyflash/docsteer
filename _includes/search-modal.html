@@ -13,7 +13,7 @@
 
     <div class="search-modal__body">
       <ul class="search-results" id="searchResults" role="listbox"
-          data-endpoint="{{ '/search.json' | relative_url }}"
+          data-endpoint="{{ '/search.json' | relative_url }}?v={{ ds_index_v }}"
           data-max="{{ cfg.search.max_results | default: 8 }}"></ul>
       <p class="search-modal__empty" id="searchEmpty" hidden>No results. Try another term.</p>
       <p class="search-modal__hint" id="searchHint">

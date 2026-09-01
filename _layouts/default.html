@@ -9,6 +9,15 @@
   re-download assets that did not change.
 {%- endcomment -%}
 {%- assign ds_version = "1.1.0" -%}
+{%- comment -%}
+  The search index gets its own token, and a different kind of one. search.json
+  is regenerated from the site's content, so it changes when you publish a page
+  and not when the theme is upgraded: keyed to ds_version it would go stale the
+  moment you added a doc, and readers would keep searching last release's
+  index. Build time is the honest key here, and the cost of busting it on every
+  deploy is one small JSON, not the whole stylesheet.
+{%- endcomment -%}
+{%- assign ds_index_v = site.time | date: "%s" -%}
 <html lang="{{ site.lang | default: 'en' }}"
       data-skin="{{ skin }}"
       {% if mode != "auto" %}data-mode="{{ mode }}"{% endif %}>

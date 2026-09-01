@@ -4,7 +4,7 @@
     baseurl: "{{ site.baseurl }}",
     search: {
       enabled: {{ cfg.search.enabled | default: false }},
-      endpoint: "{{ '/search.json' | relative_url }}",
+      endpoint: "{{ '/search.json' | relative_url }}?v={{ ds_index_v }}",
       max: {{ cfg.search.max_results | default: 8 }},
       hotkey: {{ cfg.search.hotkey | default: false }}
     },

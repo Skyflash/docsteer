@@ -12,6 +12,17 @@ For a theme, that means:
 - **Minor** — new options, layouts or components that existing sites can ignore.
 - **Patch** — fixes and documentation that change nothing you have configured.
 
+## [Unreleased]
+
+### Fixed
+
+- **The search index could be served from cache after publishing.** `search.json`
+  was requested without a token, so a returning reader kept searching the index
+  their browser had already stored and new pages were missing from the results.
+  It now carries a build-time token — deliberately not the theme version used
+  for CSS and JS, since the index changes with your content and not with the
+  theme.
+
 ## [1.1.0] — 2026-09-01
 
 Mobile navigation fixes, clickable tags, and correct structured data.
