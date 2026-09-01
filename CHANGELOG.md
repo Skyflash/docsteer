@@ -12,6 +12,62 @@ For a theme, that means:
 - **Minor** — new options, layouts or components that existing sites can ignore.
 - **Patch** — fixes and documentation that change nothing you have configured.
 
+## [1.1.0] — 2026-09-01
+
+Mobile navigation fixes, clickable tags, and correct structured data.
+
+### Added
+
+- **Tags open the search.** A tag in the doc footer is now a button that opens
+  the search modal already showing that tag's results, instead of an inert
+  badge. Tags were always part of the search index; nothing was letting a
+  reader use them. With `search.enabled: false` they stay inert badges.
+- **The mobile drawer carries the primary navigation.** The navbar's own links
+  are hidden below 960px, so the drawer now lists them above the documentation
+  tree, on every page.
+- **Versioned assets.** The theme's CSS and JS are requested with a `?v=`
+  token tied to the theme version, so a browser holding an older copy picks up
+  the new one after an upgrade instead of serving stale JavaScript against new
+  markup. `search.json` is deliberately not versioned: it changes with your
+  content, not with the theme.
+
+### Fixed
+
+- **The navbar burger did nothing outside documentation pages.** Its handler
+  was bound only when a sidebar existed, and the sidebar was rendered only for
+  doc-shaped layouts — so on the home page, the blog, any `layout: page` and
+  the 404 the button was dead. The drawer now renders everywhere.
+- **The primary navigation was unreachable on phones.** `.navbar__links` is
+  hidden below 960px and the drawer held only the documentation tree, so from
+  a phone there was no route to the top-level pages from any page at all.
+- **The site name disappeared below 560px**, leaving nothing on a phone that
+  said what the site was called. The brand now truncates instead: the burger,
+  the mark and the tool buttons keep their size, and a long title ellipsises.
+- **Home link tiles were mostly empty space on phones.** Below 560px, where
+  the grid is a single column, the icon moves beside the text instead of
+  sitting on its own line, roughly halving the height of each tile.
+- **A race in the search index loader.** A caller arriving while the fetch was
+  in flight was handed a null index and threw. Reachable before this release
+  by typing within 90ms of opening the modal.
+- **The Updated row could show the build date.** A page with no date field fell
+  through to `page.date`, which Jekyll invents for collection documents and
+  sets to the moment of the build.
+
+### Changed
+
+- **Doc tags render as `<button class="badge badge--soft doc-tag">`** rather
+  than `<span class="badge badge--soft">`. If you styled them with a selector
+  like `.doc-tags span`, target `.doc-tag` instead. The appearance is
+  unchanged.
+- **`last_modified_at:` is now the preferred front matter field** for a page's
+  modification date, because `jekyll-seo-tag` reads that name for
+  `dateModified` and the doc layout can then print the same value. `updated:`
+  still works and is read as a fallback.
+- The demo site now documents, in **SEO & performance**, the `seo:` defaults to
+  copy into your own `_config.yml` — `_config.yml` does not ship with the gem,
+  so a fresh install labels every documentation page a `BlogPosting` and stamps
+  it with the time of the build until you set them.
+
 ## [1.0.0] — 2026-09-01
 
 First public release.
@@ -49,4 +105,5 @@ First public release.
 - FAQ question anchors are derived from the question text, so rewording a
   question changes its URL fragment and breaks existing deep links.
 
+[1.1.0]: https://github.com/Skyflash/docsteer/releases/tag/v1.1.0
 [1.0.0]: https://github.com/Skyflash/docsteer/releases/tag/v1.0.0

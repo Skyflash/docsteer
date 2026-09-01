@@ -100,7 +100,12 @@ exists to illustrate the docs — not to power the theme — belongs in it.
 ## Releasing a new version
 
 1. `bundle update` if needed, then `bundle lock --add-platform x86_64-linux`.
-2. Bump `spec.version` in `jekyll-theme-docsteer.gemspec`.
+2. Bump the version in **both** places, or the release ships without busting
+   any cache:
+   - `spec.version` in `jekyll-theme-docsteer.gemspec`
+   - `ds_version` in `_layouts/default.html`, the `?v=` token on the theme's
+     CSS and JS. Leave it behind and upgraded sites keep serving the old
+     assets from cache against the new markup.
 3. Add the section to `CHANGELOG.md`, and the `[x.y.z]:` link at the bottom.
 4. `bundle exec jekyll build` — clean, warnings aside.
 5. Check no link bypasses the baseurl:
