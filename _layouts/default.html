@@ -24,8 +24,14 @@
     {%- assign show_sidebar = true -%}
   {%- endif -%}
 
+  {%- comment -%}
+    The aside is rendered on every page: below 960px it is the drawer the
+    navbar burger opens, and a page with no drawer leaves the burger dead and
+    the primary nav unreachable. Only `has-sidebar` — the desktop grid column —
+    is conditional.
+  {%- endcomment -%}
   <div class="page-shell{% if show_sidebar %} has-sidebar{% endif %}">
-    {% if show_sidebar %}{% include sidebar.html %}{% endif %}
+    {% include sidebar.html docs=show_sidebar %}
 
     <main id="main" class="page-main{% if show_sidebar %} has-sidebar{% endif %}" tabindex="-1">
       {{ content }}

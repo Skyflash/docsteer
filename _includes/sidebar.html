@@ -1,5 +1,13 @@
 {%- assign cfg = site.docsteer -%}
-<aside class="sidebar{% if cfg.sidebar.sticky %} is-sticky{% endif %}" id="sidebar" aria-label="Documentation navigation">
+{%- comment -%}
+  Rendered on EVERY page, because the navbar burger is shown on every page at
+  mobile widths and has to open something. `include.docs` says whether this
+  page also gets the documentation tree; when it is false the aside exists
+  only as the mobile drawer (see .sidebar--drawer-only).
+{%- endcomment -%}
+{%- assign show_docs = include.docs -%}
+<aside class="sidebar{% unless show_docs %} sidebar--drawer-only{% endunless %}{% if cfg.sidebar.sticky and show_docs %} is-sticky{% endif %}"
+       id="sidebar" aria-label="Site navigation">
   <div class="sidebar__inner">
 
     {% if cfg.search.enabled %}
@@ -9,6 +17,24 @@
     </button>
     {% endif %}
 
+    {%- comment -%}
+      The navbar's primary links are hidden below 960px, so the drawer carries
+      them. Hidden again on desktop, where the navbar shows them itself.
+    {%- endcomment -%}
+    <nav class="sidebar__primary" aria-label="Primary">
+      <a href="{{ '/' | relative_url }}"
+         class="sidebar__link{% if page.url == '/' %} is-active{% endif %}">
+        <i class="fa-solid fa-house" aria-hidden="true"></i>Home
+      </a>
+      {% for item in site.data.navigation.main %}
+        <a href="{{ item.url | relative_url }}"
+           class="sidebar__link{% if page.url contains item.url and item.url != '/' %} is-active{% endif %}">
+          {% if item.icon %}<i class="{{ item.icon }}" aria-hidden="true"></i>{% endif %}{{ item.title }}
+        </a>
+      {% endfor %}
+    </nav>
+
+    {% if show_docs %}
     <nav class="sidebar__nav">
       {% for group in site.data.navigation.sidebar %}
         {%- assign group_active = false -%}
@@ -40,6 +66,7 @@
         </div>
       {% endfor %}
     </nav>
+    {% endif %}
 
     {% if cfg.buy_me_a_coffee.username and cfg.buy_me_a_coffee.show_in contains "sidebar" %}
       <div class="sidebar__coffee">{% include buy-me-a-coffee.html %}</div>

@@ -8,6 +8,7 @@
   // (and runs the border the whole height of the page, which looks better).
   align-self: stretch;
 }
+.sidebar--drawer-only { display: none; }
 .sidebar.is-sticky .sidebar__inner {
   position: sticky;
   top: var(--nav-h);
@@ -52,6 +53,11 @@
   background: var(--bg-elev);
 }
 .sidebar__search i { font-size: .85em; }
+
+// ── Primary nav (drawer only) ─────────────────────
+// The navbar hides its own links below 960px, so the drawer carries them.
+// Above that the navbar shows them and this would only be a duplicate.
+.sidebar__primary { display: none; }
 
 // ── Groups ───────────────────────────────────────────────────
 .sidebar__nav { display: grid; gap: var(--sp-1); }
@@ -156,4 +162,20 @@
   .sidebar.is-sticky .sidebar__inner { position: static; max-height: none; }
   .sidebar__inner { padding-top: calc(var(--nav-h) + var(--sp-4)); height: 100%; }
   .sidebar__link { min-height: 38px; }
+
+  // Pages with no documentation tree still render the aside, purely so the
+  // burger has a drawer to open. It exists only at drawer widths.
+  .sidebar--drawer-only { display: block; }
+
+  .sidebar__primary { display: grid; gap: 2px; }
+  .sidebar__primary .sidebar__link { gap: var(--sp-3); font-size: var(--fs-md); }
+  .sidebar__primary .sidebar__link > i { width: 1.1em; text-align: center; opacity: .8; }
+  // The active rail is drawn on the group's border-left, which this nav has no
+  // list to hang off — the marker would float in the padding.
+  .sidebar__primary .sidebar__link.is-active::before { content: none; }
+  .sidebar__primary + .sidebar__nav {
+    margin-top: var(--sp-5);
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--border);
+  }
 }
