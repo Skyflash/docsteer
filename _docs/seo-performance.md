@@ -10,7 +10,7 @@ tags: [seo, performance, lighthouse, meta]
 
 | Concern | Handled by |
 | --- | --- |
-| `<title>`, meta description, canonical | `jekyll-seo-tag` (`{% seo %}` in `head.html`) |
+| `<title>`, meta description, canonical | `jekyll-seo-tag` (`{% raw %}{% seo %}{% endraw %}` in `head.html`) |
 | Open Graph & Twitter cards | `jekyll-seo-tag` (uses `title`, `description`, `image`) |
 | JSON-LD structured data | `jekyll-seo-tag` |
 | `sitemap.xml` | `jekyll-sitemap` |
