@@ -30,7 +30,7 @@ jobs:
       # Injects the correct base path for a project site, so the build does not
       # depend on `baseurl` being right in _config.yml.
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Build
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
