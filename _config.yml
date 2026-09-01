@@ -1,0 +1,196 @@
+# ─────────────────────────────────────────────────────────────
+#  DocSteer — Jekyll theme for documentation & knowledge bases
+# ─────────────────────────────────────────────────────────────
+
+title: DocSteer
+tagline: Simple, searchable docs and knowledge bases for teams
+description: >-
+  DocSteer is a fast, responsive Jekyll theme for technical documentation,
+  help centres and internal knowledge bases. Live search, six colour skins
+  with dark mode, image lightbox, auto table of contents and SEO ready.
+
+# Absolute URL of the deployed site (no trailing slash)
+url: "https://skyflash.github.io"
+# Sub-path of the site, e.g. /docsteer — leave "" for a user/organisation page
+baseurl: "/docsteer"
+
+lang: en
+timezone: UTC
+
+# ─────────────────────────────────────────────────────────────
+#  Theme options — everything below is safe to edit
+# ─────────────────────────────────────────────────────────────
+docsteer:
+  # Colour skin: aqua | violet | mint | ember | graphite | clay
+  skin: aqua
+  # Colour mode: auto (follow OS) | light | dark
+  mode: auto
+  # Let visitors switch skin from the navbar (useful while choosing one)
+  skin_switcher: true
+  # Let visitors toggle light / dark
+  mode_switcher: true
+
+  # Layouts that use the documentation shell (sidebar + content + TOC).
+  # Add your own here if you create a layout that inherits from `doc`.
+  doc_layouts: [doc, faq]
+
+  # Sidebar
+  sidebar:
+    enabled: true
+    # Collapse nested sections until the active page needs them
+    collapse_inactive: true
+    sticky: true
+
+  # Right-hand "On this page" table of contents (built from h2/h3)
+  toc:
+    enabled: true
+    min_headings: 2
+
+  # Live search
+  search:
+    enabled: true
+    # Which collections / pages feed the index
+    collections: [docs]
+    include_pages: true
+    # Open with "/" or Cmd/Ctrl-K
+    hotkey: true
+    placeholder: "Search the docs…"
+    max_results: 8
+    # Index every FAQ question as its own result, deep-linked to its answer.
+    # Turn off to index a FAQ page as a single result instead (smaller index,
+    # but searching an answer only ever gets you the page).
+    index_questions: true
+
+  # FAQ accordion (layout: faq). Questions live in the page front matter, or in
+  # a data file via `faq_data: <name>` reading _data/<name>.yml
+  faq:
+    enabled: true
+    # Open the first question on arrival
+    expand_first: true
+    expand_all_button: true
+    # Emit schema.org FAQPage JSON-LD. Note: since 2023 Google shows FAQ rich
+    # results only for government and health sites, so treat this as metadata
+    # for other consumers rather than a ranking feature.
+    schema: true
+
+  # Image lightbox for content images
+  lightbox:
+    enabled: true
+    # Add class "no-lightbox" to any <img> to opt out
+
+  # Code blocks
+  code:
+    copy_button: true
+    line_numbers: false
+
+  # Font Awesome 6.5.2 (Free). Icons in _includes/*.html use its classes.
+  fontawesome:
+    enabled: true
+    # "local" — bundled in assets/vendor/fontawesome (works offline / behind
+    #           corporate firewalls, no third-party request). Recommended.
+    # "cdn"   — load from cdnjs instead (smaller repo).
+    source: local
+    cdn_url: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    # Optional SRI hash for the CDN file. MUST match the exact file or the
+    # browser blocks it — leave empty unless you have verified it.
+    cdn_integrity: ""
+
+  # Header / brand
+  logo: /assets/images/logo.svg      # square mark shown beside the site title
+  favicon: /assets/images/favicon.svg
+
+  # Footer
+  footer:
+    show_credit: true          # "Built with DocSteer" — set false to hide
+    copyright: "Cristian Castellari"
+    links:
+      - { label: "Home",    url: "/" }
+      - { label: "GitHub",  url: "https://github.com/Skyflash/docsteer" }
+      - { label: "License", url: "/license/" }
+
+  # "Buy me a coffee" button (leave username empty to hide everywhere)
+  buy_me_a_coffee:
+    username: "cristiancastellari"
+    label: "Buy me a coffee"
+    # shown in: navbar, sidebar, footer  (any subset)
+    show_in: [navbar, footer]
+
+  # Social / project links. Leave a value empty to hide that icon.
+  #   github   — "owner/repo" or "owner"
+  #   linkedin — full profile URL
+  #   email    — plain address; rendered as a mailto: link
+  social:
+    github: "Skyflash/docsteer"
+    linkedin: "https://www.linkedin.com/in/cristiancastellari"
+    email: "c.castellari@gmail.com"
+    twitter:
+    mastodon:
+    discord:
+    rss: true
+
+  # Edit-this-page link on every doc (needs a repo + branch)
+  edit_page:
+    enabled: true
+    repo: "https://github.com/Skyflash/docsteer"
+    branch: "main"
+    # path inside the repo where source files live
+    path: ""
+
+  # Analytics (optional) — plausible domain or GA4 measurement id
+  analytics:
+    plausible_domain:
+    ga4_id:
+
+# ─────────────────────────────────────────────────────────────
+#  Collections
+# ─────────────────────────────────────────────────────────────
+collections:
+  docs:
+    output: true
+    permalink: /docs/:path/
+
+defaults:
+  - scope: { path: "", type: "docs" }
+    values:
+      layout: doc
+  - scope: { path: "" }
+    values:
+      layout: page
+      # Default social share card, used by jekyll-seo-tag for og:image and
+      # twitter:image. Override per page with `image:` in its front matter.
+      image: /assets/images/og-default.png
+
+# ─────────────────────────────────────────────────────────────
+#  Build
+# ─────────────────────────────────────────────────────────────
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: plaintext
+
+sass:
+  style: compressed
+  sourcemap: never
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-paginate
+
+feed:
+  path: feed.xml
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+  - README.md
+  - CHANGELOG.md
+  - LICENSE
+  - screenshots
+  - "*.gemspec"

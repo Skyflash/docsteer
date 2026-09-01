@@ -1,0 +1,37 @@
+---
+layout: default
+---
+{%- assign cfg = site.docsteer -%}
+<div class="doc-grid{% if cfg.toc.enabled and page.toc != false %} has-toc{% endif %}">
+  <article class="prose doc-content" id="doc-content">
+    <header class="doc-head">
+      {% if page.category %}<p class="doc-head__eyebrow">{{ page.category }}</p>{% endif %}
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}<p class="doc-head__lead">{{ page.description }}</p>{% endif %}
+
+      <div class="doc-head__meta">
+        {% if page.updated or page.date %}
+          <span><i class="fa-regular fa-clock" aria-hidden="true"></i>
+            Updated {{ page.updated | default: page.date | date: "%b %-d, %Y" }}</span>
+        {% endif %}
+        {% if page.read_time %}
+          <span><i class="fa-regular fa-file-lines" aria-hidden="true"></i> {{ page.read_time }} min read</span>
+        {% endif %}
+        {% if cfg.edit_page.enabled and cfg.edit_page.repo %}
+          {%- assign edit_url = cfg.edit_page.repo | append: "/edit/" | append: cfg.edit_page.branch | append: "/" | append: cfg.edit_page.path | append: page.path -%}
+          <a class="doc-head__edit" href="{{ edit_url }}" rel="noopener">
+            <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Edit this page
+          </a>
+        {% endif %}
+      </div>
+    </header>
+
+    {{ content }}
+
+    {% include doc-footer.html %}
+  </article>
+
+  {% if cfg.toc.enabled and page.toc != false %}
+    {% include toc.html %}
+  {% endif %}
+</div>

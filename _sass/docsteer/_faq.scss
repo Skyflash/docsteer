@@ -1,0 +1,140 @@
+// ── FAQ accordion ────────────────────────────────────────────
+// Built on native <details>/<summary>: it opens and closes with no JS, and is
+// keyboard accessible without a single ARIA attribute. main.js only adds the
+// "expand all" control and hash deep-linking.
+
+.faq {
+  margin-top: var(--sp-6);
+}
+
+.faq__tools {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--sp-3);
+}
+
+.faq__toggle-all {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 6px var(--sp-3);
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elev);
+  color: var(--text-soft);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+
+  &:hover {
+    color: var(--brand);
+    border-color: var(--brand);
+    background: var(--brand-soft);
+  }
+}
+
+.faq__section {
+  margin-top: var(--sp-7);
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-h3);
+}
+
+.faq__group {
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-elev);
+}
+
+// ── One question ─────────────────────────────────────────────
+.faq-item {
+  & + & { border-top: 1px solid var(--border); }
+
+  &[open] {
+    background: var(--bg-sunken);
+
+    .faq-item__q { color: var(--brand); }
+    .faq-item__chevron { transform: rotate(180deg); }
+  }
+}
+
+.faq-item__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;              // Firefox
+  transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+
+  &::-webkit-details-marker { display: none; }   // Safari
+  &:hover { color: var(--brand); background: var(--brand-soft); }
+
+  // The whole row is the hit target, so give it a visible focus ring.
+  &:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: -2px;
+  }
+}
+
+.faq-item__chevron {
+  flex: none;
+  font-size: var(--fs-sm);
+  color: var(--text-faint);
+  transition: transform var(--dur-lg) var(--ease);
+}
+
+.faq-item__a {
+  position: relative;
+  padding: 0 var(--sp-5) var(--sp-5);
+  color: var(--text-soft);
+
+  // .prose scopes its flow rules to DIRECT children (.prose > * + *), and an
+  // answer sits one level deeper — so re-establish them here, or paragraphs
+  // inside an answer collapse against each other with no spacing at all.
+  > * + * { margin-top: var(--sp-4); }
+  > p { max-width: var(--measure); }
+  > h3, > h4 { margin-top: var(--sp-5); }
+
+  > :first-child { margin-top: 0; }
+  > :last-child { margin-bottom: 0; }
+}
+
+// Per-question anchor, revealed on hover like the heading anchors.
+.faq-item__permalink {
+  position: absolute;
+  top: 2px;
+  right: var(--sp-4);
+  color: var(--text-faint);
+  font-size: var(--fs-xs);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease), color var(--dur) var(--ease);
+
+  &:hover { color: var(--brand); }
+  &:focus-visible { opacity: 1; }
+}
+.faq-item:hover .faq-item__permalink { opacity: 1; }
+
+// Deep-linked question: flash the brand colour so it is obvious which one.
+.faq-item:target {
+  box-shadow: inset 3px 0 0 var(--brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item__chevron { transition: none; }
+}
+
+// Print: every answer visible, no chrome.
+@media print {
+  .faq__tools { display: none; }
+  .faq-item__a { display: block !important; }
+  .faq-item__chevron,
+  .faq-item__permalink { display: none; }
+}

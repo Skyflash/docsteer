@@ -1,0 +1,300 @@
+// ── Doc / page content ───────────────────────────────────────
+
+// Page & doc headers
+.doc-head { margin-bottom: var(--sp-7); }
+.doc-head__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: var(--tr-wide);
+  color: var(--brand);
+}
+.doc-head h1, .page-head h1 { margin-bottom: var(--sp-3); }
+.doc-head__lead, .page-head__lead {
+  font-size: var(--fs-lg);
+  line-height: 1.55;
+  color: var(--text-soft);
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+.doc-head__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-5);
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-sm);
+  color: var(--text-faint);
+}
+.doc-head__meta i { margin-right: 6px; }
+.doc-head__edit { margin-left: auto; color: var(--text-soft); font-weight: 500; }
+.doc-head__edit:hover { color: var(--brand); }
+
+.page-head { margin-bottom: var(--sp-7); }
+
+// ── Prose rhythm ─────────────────────────────────────────────
+.prose > * + * { margin-top: var(--sp-4); }
+.prose > h2 {
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--border);
+}
+.prose > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.prose > h3 { margin-top: var(--sp-7); }
+.prose > h4 { margin-top: var(--sp-5); }
+.prose > h2 + *, .prose > h3 + *, .prose > h4 + * { margin-top: var(--sp-3); }
+
+.prose p, .prose li { overflow-wrap: break-word; }
+.prose > p { max-width: var(--measure); }
+
+.prose ul { list-style: none; padding-left: 0; }
+.prose ul > li { position: relative; padding-left: 1.5em; }
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: .45em;
+  top: .68em;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+.prose ol { list-style: none; counter-reset: li; padding-left: 0; }
+.prose ol > li { position: relative; counter-increment: li; padding-left: 1.9em; }
+.prose ol > li::before {
+  content: counter(li);
+  position: absolute;
+  left: 0;
+  top: .1em;
+  width: 1.4em;
+  font-size: var(--fs-sm);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: var(--brand);
+}
+.prose li + li { margin-top: var(--sp-2); }
+.prose li > ul, .prose li > ol { margin-top: var(--sp-2); }
+.prose li > p { margin-bottom: var(--sp-2); }
+
+// Icon-only affordances (heading anchors, FAQ permalinks) opt out of the
+// underlined body-link treatment.
+.prose a:not(.btn):not(.heading-anchor):not(.faq-item__permalink) {
+  color: var(--link);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: hsl(var(--brand-h) var(--brand-s) 55% / .35);
+  transition: text-decoration-color var(--dur) var(--ease);
+}
+.prose a:not(.btn):not(.heading-anchor):not(.faq-item__permalink):hover { text-decoration-color: currentColor; }
+
+// Heading anchors (added by JS)
+.heading-anchor {
+  margin-left: .4em;
+  font-size: .62em;
+  color: var(--text-faint);
+  opacity: 0;
+  text-decoration: none;
+  vertical-align: middle;
+  transition: opacity var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.heading-anchor:hover { color: var(--brand); }
+h2:hover > .heading-anchor, h3:hover > .heading-anchor,
+h4:hover > .heading-anchor, .heading-anchor:focus-visible { opacity: 1; }
+
+// Blockquote — quieter than a callout, deliberately
+.prose blockquote {
+  padding-left: var(--sp-5);
+  border-left: 2px solid var(--border-strong);
+  color: var(--text-soft);
+  font-style: normal;
+}
+.prose blockquote > :last-child { margin-bottom: 0; }
+
+// Inline code
+.prose :not(pre) > code {
+  padding: .12em .38em;
+  background: var(--bg-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--text);
+  white-space: nowrap;
+}
+.prose a :not(pre) > code, .prose a > code { color: inherit; }
+
+// ── Code blocks ──────────────────────────────────────────────
+// main.js wraps each Rouge block in .code-wrap and adds a header bar
+// with the language name and an always-visible copy button.
+.code-wrap {
+  margin-block: var(--sp-5);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--code-bg);
+  overflow: hidden;
+}
+.code-wrap__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 6px 6px 6px var(--sp-4);
+  background: var(--bg-sunken);
+  border-bottom: 1px solid var(--border);
+}
+.code-wrap__lang {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.code-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 5px 10px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-soft);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  transition: color var(--dur) var(--ease), background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+.code-copy:hover { color: var(--brand); background: var(--bg-elev); border-color: var(--border); }
+.code-copy.is-done { color: var(--success); }
+
+// Rouge output inside the wrapper: strip its own chrome so only the
+// wrapper draws a border and only <pre> carries padding.
+.code-wrap .highlighter-rouge,
+.code-wrap .highlight,
+.code-wrap figure.highlight {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.prose pre {
+  margin: 0;
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--code-bg);
+  overflow-x: auto;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  tab-size: 2;
+  -webkit-overflow-scrolling: touch;
+}
+// Standalone <pre> (not wrapped by JS) keeps a border of its own
+.prose > pre:not(.highlight) {
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  margin-block: var(--sp-5);
+}
+.prose pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+  white-space: pre;
+}
+.prose pre::-webkit-scrollbar { height: 8px; }
+.prose pre::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+
+// ── Tables ───────────────────────────────────────────────────
+.table-scroll { overflow-x: auto; margin-block: var(--sp-5); -webkit-overflow-scrolling: touch; }
+.prose table {
+  width: 100%;
+  // Scroll inside .table-scroll on narrow screens instead of squeezing
+  min-width: 34rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--fs-sm);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.prose th, .prose td {
+  padding: var(--sp-3) var(--sp-4);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+.prose thead th {
+  background: var(--bg-sunken);
+  font-weight: 650;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+.prose tbody tr:last-child td { border-bottom: 0; }
+.prose tbody tr:hover { background: var(--bg-sunken); }
+.prose td code { white-space: nowrap; }
+
+// ── Figures / images ─────────────────────────────────────────
+.prose img {
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+}
+.prose figure { margin-block: var(--sp-5); }
+.prose figcaption {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-sm);
+  color: var(--text-faint);
+  text-align: center;
+}
+.prose .lightbox-trigger { cursor: zoom-in; transition: opacity var(--dur) var(--ease); }
+.prose .lightbox-trigger:hover { opacity: .92; }
+
+// ── Doc pager ────────────────────────────────────────────────
+.doc-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--border);
+}
+.doc-pager__link {
+  display: grid;
+  gap: var(--sp-1);
+  padding: var(--sp-4) var(--sp-5);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text);
+  background: var(--bg-elev);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+.doc-pager__link:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+.doc-pager__next { text-align: right; }
+.doc-pager__dir {
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tr-wide);
+}
+.doc-pager__title { font-weight: 600; color: var(--brand); line-height: 1.4; }
+
+.doc-tags { margin-top: var(--sp-6); display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+
+@media (max-width: 560px) {
+  .doc-pager { grid-template-columns: 1fr; }
+  .doc-head__edit { margin-left: 0; }
+}

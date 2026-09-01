@@ -1,0 +1,13 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+/vendor/
+node_modules/
+# Gemfile.lock is committed on purpose. This repo is not only a gem — it is
+# also the site deployed by .github/workflows/pages.yml, and a deploy that
+# resolves dependencies afresh can break with no change of your own. It has no
+# effect on anyone installing the theme: they resolve from the .gemspec.
+.DS_Store
+Thumbs.db
+*.gem

@@ -1,0 +1,22 @@
+{%- assign cfg = site.docsteer -%}
+<script>
+  window.DocSteer = {
+    baseurl: "{{ site.baseurl }}",
+    search: {
+      enabled: {{ cfg.search.enabled | default: false }},
+      endpoint: "{{ '/search.json' | relative_url }}",
+      max: {{ cfg.search.max_results | default: 8 }},
+      hotkey: {{ cfg.search.hotkey | default: false }}
+    },
+    lightbox: {{ cfg.lightbox.enabled | default: false }},
+    faq: {{ cfg.faq.enabled | default: false }},
+    codeCopy: {{ cfg.code.copy_button | default: false }},
+    toc: {
+      enabled: {{ cfg.toc.enabled | default: false }},
+      min: {{ cfg.toc.min_headings | default: 2 }}
+    }
+  };
+</script>
+<script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+{% if cfg.search.enabled %}<script src="{{ '/assets/js/search.js' | relative_url }}" defer></script>{% endif %}
+{% if cfg.lightbox.enabled %}<script src="{{ '/assets/js/lightbox.js' | relative_url }}" defer></script>{% endif %}

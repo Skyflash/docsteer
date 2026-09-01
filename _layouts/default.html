@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{%- assign cfg = site.docsteer -%}
+{%- assign skin = cfg.skin | default: "aqua" -%}
+{%- assign mode = cfg.mode | default: "auto" -%}
+<html lang="{{ site.lang | default: 'en' }}"
+      data-skin="{{ skin }}"
+      {% if mode != "auto" %}data-mode="{{ mode }}"{% endif %}>
+{% include head.html %}
+<body class="layout-{{ page.layout }}{% if page.sidebar == false %} no-sidebar{% endif %}">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  {% include navbar.html %}
+
+  {%- comment -%}
+    Jekyll reports the layout the PAGE declared, not the chain it renders
+    through: a page on `layout: faq` reports "faq" even though faq inherits
+    from doc. Testing for "doc" alone silently dropped the sidebar on every
+    derived layout, so the set is configurable — add your own doc-shaped
+    layouts to `docsteer.doc_layouts`.
+  {%- endcomment -%}
+  {%- assign doc_layouts = cfg.doc_layouts | default: "doc" -%}
+  {%- assign show_sidebar = false -%}
+  {%- if cfg.sidebar.enabled and page.sidebar != false and doc_layouts contains page.layout -%}
+    {%- assign show_sidebar = true -%}
+  {%- endif -%}
+
+  <div class="page-shell{% if show_sidebar %} has-sidebar{% endif %}">
+    {% if show_sidebar %}{% include sidebar.html %}{% endif %}
+
+    <main id="main" class="page-main{% if show_sidebar %} has-sidebar{% endif %}" tabindex="-1">
+      {{ content }}
+    </main>
+  </div>
+
+  {% include footer.html %}
+  {% if cfg.search.enabled %}{% include search-modal.html %}{% endif %}
+  {% if cfg.lightbox.enabled %}<div class="lightbox" id="lightbox" aria-hidden="true"></div>{% endif %}
+
+  <button class="to-top" id="toTop" aria-label="Back to top" hidden>
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  {% include scripts.html %}
+</body>
+</html>

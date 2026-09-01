@@ -1,0 +1,48 @@
+{%- assign cfg = site.docsteer -%}
+<aside class="sidebar{% if cfg.sidebar.sticky %} is-sticky{% endif %}" id="sidebar" aria-label="Documentation navigation">
+  <div class="sidebar__inner">
+
+    {% if cfg.search.enabled %}
+    <button class="sidebar__search" data-search-open type="button">
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      <span>{{ cfg.search.placeholder | default: "Search…" }}</span>
+    </button>
+    {% endif %}
+
+    <nav class="sidebar__nav">
+      {% for group in site.data.navigation.sidebar %}
+        {%- assign group_active = false -%}
+        {%- for link in group.children -%}
+          {%- if page.url == link.url %}{% assign group_active = true %}{% endif -%}
+        {%- endfor -%}
+
+        <div class="sidebar__group{% if cfg.sidebar.collapse_inactive and group_active == false and group.open != true %} is-collapsed{% endif %}">
+          {% if group.title %}
+          <button class="sidebar__group-title" aria-expanded="{{ group_active | default: false }}">
+            {% if group.icon %}<i class="{{ group.icon }}" aria-hidden="true"></i>{% endif %}
+            <span>{{ group.title }}</span>
+            <i class="fa-solid fa-chevron-right sidebar__chev" aria-hidden="true"></i>
+          </button>
+          {% endif %}
+
+          <ul class="sidebar__list">
+            {% for link in group.children %}
+              <li>
+                <a href="{{ link.url | relative_url }}"
+                   class="sidebar__link{% if page.url == link.url %} is-active{% endif %}"
+                   {% if page.url == link.url %}aria-current="page"{% endif %}>
+                  {{ link.title }}
+                  {% if link.badge %}<span class="badge">{{ link.badge }}</span>{% endif %}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </nav>
+
+    {% if cfg.buy_me_a_coffee.username and cfg.buy_me_a_coffee.show_in contains "sidebar" %}
+      <div class="sidebar__coffee">{% include buy-me-a-coffee.html %}</div>
+    {% endif %}
+  </div>
+</aside>

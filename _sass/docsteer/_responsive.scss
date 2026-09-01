@@ -1,0 +1,31 @@
+// ── Extra responsive polish ─────────────────────────────────
+@media (max-width: 1400px) {
+  :root { --sidebar-w: 264px; --toc-w: 220px; }
+}
+
+@media (max-width: 1180px) {
+  :root { --content-max: 76ch; }
+}
+
+@media (max-width: 960px) {
+  :root { --content-max: 100%; --measure: 100%; }
+  .home { padding-inline: var(--sp-4); }
+}
+
+@media (max-width: 560px) {
+  :root { --sp-9: 72px; --sp-8: 48px; }
+}
+
+@media (max-width: 480px) {
+  :root { --fs-root: 15.5px; }
+  .page-main { padding-inline: var(--sp-4); }
+  .hero__actions .btn { width: 100%; }
+  .to-top { right: var(--sp-3); bottom: var(--sp-3); }
+  .code-wrap__bar { padding-left: var(--sp-3); }
+  .prose pre { padding-inline: var(--sp-4); }
+}
+
+// Large screens: let content breathe without going past a readable measure
+@media (min-width: 1600px) {
+  :root { --content-max: 80ch; }
+}

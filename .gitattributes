@@ -1,0 +1,28 @@
+# Normalise line endings in the repository to LF, whatever each contributor's
+# core.autocrlf happens to be. Without this, a Windows and a Linux contributor
+# editing the same file produce diffs that touch every line.
+* text=auto eol=lf
+
+# Windows-only scripts must keep CRLF to run reliably.
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text eol=crlf
+
+# Never touch these.
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.ico    binary
+*.woff   binary
+*.woff2  binary
+*.ttf    binary
+*.eot    binary
+*.otf    binary
+
+# SVG is text, but treat it as such explicitly so diffs stay readable.
+*.svg text eol=lf
+
+# Keep the theme's own build output and vendored assets out of language stats
+# and collapsed in pull-request diffs.
+assets/vendor/** linguist-vendored

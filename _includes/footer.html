@@ -1,0 +1,43 @@
+{%- assign cfg = site.docsteer -%}
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <a class="brand" href="{{ '/' | relative_url }}">
+        {% if cfg.logo %}<img class="brand__logo" src="{{ cfg.logo | relative_url }}" alt="{{ site.title }}">
+        {% else %}<span class="brand__mark">{{ site.title | slice: 0, 1 | upcase }}</span>{% endif %}
+        <span class="brand__name">{{ site.title }}</span>
+      </a>
+      <p class="site-footer__tag">{{ site.tagline | default: site.description }}</p>
+
+      <div class="site-footer__social">
+        {% if cfg.social.github %}<a href="https://github.com/{{ cfg.social.github }}" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>{% endif %}
+        {% if cfg.social.linkedin %}<a href="{{ cfg.social.linkedin }}" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>{% endif %}
+        {% if cfg.social.twitter %}<a href="https://twitter.com/{{ cfg.social.twitter }}" rel="noopener" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>{% endif %}
+        {% if cfg.social.mastodon %}<a href="{{ cfg.social.mastodon }}" rel="me noopener" aria-label="Mastodon"><i class="fa-brands fa-mastodon" aria-hidden="true"></i></a>{% endif %}
+        {% if cfg.social.discord %}<a href="{{ cfg.social.discord }}" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord" aria-hidden="true"></i></a>{% endif %}
+        {% if cfg.social.email %}<a href="mailto:{{ cfg.social.email }}" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>{% endif %}
+        {% if cfg.social.rss %}<a href="{{ '/feed.xml' | relative_url }}" aria-label="RSS feed"><i class="fa-solid fa-rss" aria-hidden="true"></i></a>{% endif %}
+      </div>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Footer">
+      {% for l in cfg.footer.links %}
+        <a href="{{ l.url | relative_url }}">{{ l.label }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+
+  <div class="site-footer__bar">
+    <span>© {{ site.time | date: "%Y" }} {{ cfg.footer.copyright | default: site.title }}. All rights reserved.</span>
+    <span class="site-footer__right">
+      {% if cfg.buy_me_a_coffee.username and cfg.buy_me_a_coffee.show_in contains "footer" %}
+        {% include buy-me-a-coffee.html %}
+      {% endif %}
+      {% if cfg.footer.show_credit %}
+        <span class="site-footer__credit">Built with
+          <a href="https://github.com/Skyflash/docsteer" rel="noopener">DocSteer</a>
+        </span>
+      {% endif %}
+    </span>
+  </div>
+</footer>

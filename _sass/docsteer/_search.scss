@@ -1,0 +1,98 @@
+// ── Live search modal ───────────────────────────────────────
+.search-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: none;
+  padding: clamp(var(--sp-4), 10vh, 120px) var(--sp-4) var(--sp-4);
+}
+.search-modal.is-open { display: block; }
+.search-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: hsl(220 40% 6% / .55);
+  backdrop-filter: blur(3px);
+  animation: fade .16s var(--ease);
+}
+.search-modal__panel {
+  position: relative;
+  max-width: 620px;
+  margin-inline: auto;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: pop .16s var(--ease);
+}
+@keyframes fade { from { opacity: 0; } }
+@keyframes pop { from { opacity: 0; transform: translateY(-8px) scale(.98); } }
+
+.search-modal__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--border);
+}
+.search-modal__bar > i { color: var(--text-faint); }
+.search-modal__input {
+  flex: 1;
+  border: 0;
+  background: none;
+  font-size: 1rem;
+  outline: none;
+}
+.search-modal__input::placeholder { color: var(--text-faint); }
+.search-modal__esc { color: var(--text-faint); }
+
+.search-modal__body { max-height: min(60vh, 520px); overflow-y: auto; padding: var(--sp-2); }
+
+.search-results { display: grid; gap: 2px; }
+.search-result {
+  display: block;
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-md);
+  color: var(--text);
+}
+.search-result:hover, .search-result.is-active {
+  background: var(--brand-soft);
+  text-decoration: none;
+}
+.search-result__crumb {
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--brand);
+}
+.search-result__title { font-weight: 600; margin-top: 2px; }
+.search-result__excerpt {
+  margin-top: 3px;
+  font-size: .84rem;
+  color: var(--text-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.search-result mark {
+  background: hsl(var(--brand-h) var(--brand-s) 55% / .22);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 1px;
+}
+
+.search-modal__empty, .search-modal__hint {
+  padding: var(--sp-4) var(--sp-5);
+  font-size: .84rem;
+  color: var(--text-faint);
+  text-align: center;
+}
+.search-modal__hint kbd { margin: 0 2px; }
+
+@media (max-width: 520px) {
+  .search-modal { padding-top: 0; }
+  .search-modal__panel { border-radius: 0; min-height: 100%; }
+  .search-modal__body { max-height: calc(100vh - 66px); }
+}

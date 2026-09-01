@@ -1,0 +1,10 @@
+{%- assign bmc = site.docsteer.buy_me_a_coffee -%}
+{%- if bmc.username -%}
+<a class="bmc{% if include.compact %} bmc--compact{% endif %}"
+   href="https://www.buymeacoffee.com/{{ bmc.username }}"
+   target="_blank" rel="noopener"
+   aria-label="{{ bmc.label | default: 'Buy me a coffee' }}">
+  <i class="fa-solid fa-mug-hot" aria-hidden="true"></i>
+  {%- unless include.compact %}<span>{{ bmc.label | default: "Buy me a coffee" }}</span>{%- endunless -%}
+</a>
+{%- endif -%}
