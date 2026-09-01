@@ -17,6 +17,6 @@
     }
   };
 </script>
-<script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
-{% if cfg.search.enabled %}<script src="{{ '/assets/js/search.js' | relative_url }}" defer></script>{% endif %}
-{% if cfg.lightbox.enabled %}<script src="{{ '/assets/js/lightbox.js' | relative_url }}" defer></script>{% endif %}
+<script src="{{ '/assets/js/main.js' | relative_url }}?v={{ ds_version }}" defer></script>
+{% if cfg.search.enabled %}<script src="{{ '/assets/js/search.js' | relative_url }}?v={{ ds_version }}" defer></script>{% endif %}
+{% if cfg.lightbox.enabled %}<script src="{{ '/assets/js/lightbox.js' | relative_url }}?v={{ ds_version }}" defer></script>{% endif %}

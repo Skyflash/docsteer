@@ -2,6 +2,13 @@
 {%- assign cfg = site.docsteer -%}
 {%- assign skin = cfg.skin | default: "aqua" -%}
 {%- assign mode = cfg.mode | default: "auto" -%}
+{%- comment -%}
+  Cache-busting token for the theme's own CSS and JS. Bumped with spec.version
+  in jekyll-theme-docsteer.gemspec: keyed to the theme's version rather than to
+  site.time so a content-only rebuild does not force every visitor to
+  re-download assets that did not change.
+{%- endcomment -%}
+{%- assign ds_version = "1.0.0" -%}
 <html lang="{{ site.lang | default: 'en' }}"
       data-skin="{{ skin }}"
       {% if mode != "auto" %}data-mode="{{ mode }}"{% endif %}>
