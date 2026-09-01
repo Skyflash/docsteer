@@ -33,6 +33,18 @@
 
 {% if page.tags and page.tags.size > 0 %}
 <div class="doc-tags">
-  {% for t in page.tags %}<span class="badge badge--soft">#{{ t }}</span>{% endfor %}
+  {%- comment -%}
+    Tags are already in search.json, so a tag is a search the reader has not run
+    yet: the button hands the term to the modal. With search off there is
+    nothing to hand it to, so it stays the inert badge it was.
+  {%- endcomment -%}
+  {% for t in page.tags %}
+    {%- if site.docsteer.search.enabled -%}
+      <button type="button" class="badge badge--soft doc-tag"
+              data-search-open="{{ t }}" aria-label="Search for {{ t }}">#{{ t }}</button>
+    {%- else -%}
+      <span class="badge badge--soft">#{{ t }}</span>
+    {%- endif -%}
+  {% endfor %}
 </div>
 {% endif %}

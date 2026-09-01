@@ -293,6 +293,15 @@ h4:hover > .heading-anchor, .heading-anchor:focus-visible { opacity: 1; }
 .doc-pager__title { font-weight: 600; color: var(--brand); line-height: 1.4; }
 
 .doc-tags { margin-top: var(--sp-6); display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.doc-tag {
+  transition: color var(--dur) var(--ease), background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+.doc-tag:hover {
+  color: var(--brand-contrast);
+  background: var(--brand);
+  border-color: transparent;
+}
 
 @media (max-width: 560px) {
   .doc-pager { grid-template-columns: 1fr; }

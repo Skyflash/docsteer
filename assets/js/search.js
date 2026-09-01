@@ -17,14 +17,16 @@
 
   var MAX = parseInt(list.dataset.max, 10) || DocSteer.search.max || 8;
   var index = null;
-  var loading = false;
+  var indexPromise = null;
   var activeIdx = -1;
   var lastFocus = null;
 
+  // The in-flight promise is what gets cached, not a boolean: a second caller
+  // arriving mid-fetch has to wait for the same request, and the old `loading`
+  // flag resolved it with a null index instead.
   function loadIndex() {
-    if (index || loading) return Promise.resolve(index);
-    loading = true;
-    return fetch(list.dataset.endpoint || DocSteer.search.endpoint)
+    if (indexPromise) return indexPromise;
+    indexPromise = fetch(list.dataset.endpoint || DocSteer.search.endpoint)
       .then(function (r) { return r.json(); })
       .then(function (data) {
         index = data.map(function (d) {
@@ -37,10 +39,10 @@
               (d.category || "") + " " + (d.content || "")).toLowerCase()
           };
         });
-        loading = false;
         return index;
       })
-      .catch(function () { loading = false; return []; });
+      .catch(function () { indexPromise = null; return []; });
+    return indexPromise;
   }
 
   function scoreItem(item, terms, raw) {
@@ -118,37 +120,47 @@
     });
   }
 
+  function runSearch(raw) {
+    if (raw.length < 2) {
+      list.innerHTML = "";
+      empty.hidden = true;
+      hint.hidden = false;
+      input.setAttribute("aria-expanded", "false");
+      return;
+    }
+    loadIndex().then(function (idx) {
+      var terms = raw.split(/\s+/);
+      var scored = [];
+      for (var i = 0; i < idx.length; i++) {
+        var s = scoreItem(idx[i], terms, raw);
+        if (s > 0) scored.push({ item: idx[i], s: s });
+      }
+      scored.sort(function (a, b) { return b.s - a.s; });
+      render(scored.slice(0, MAX).map(function (x) { return x.item; }), terms);
+    });
+  }
+
   var debounce;
   function onInput() {
     clearTimeout(debounce);
     debounce = setTimeout(function () {
-      var raw = input.value.trim().toLowerCase();
-      if (raw.length < 2) {
-        list.innerHTML = "";
-        empty.hidden = true;
-        hint.hidden = false;
-        input.setAttribute("aria-expanded", "false");
-        return;
-      }
-      loadIndex().then(function (idx) {
-        var terms = raw.split(/\s+/);
-        var scored = [];
-        for (var i = 0; i < idx.length; i++) {
-          var s = scoreItem(idx[i], terms, raw);
-          if (s > 0) scored.push({ item: idx[i], s: s });
-        }
-        scored.sort(function (a, b) { return b.s - a.s; });
-        render(scored.slice(0, MAX).map(function (x) { return x.item; }), terms);
-      });
+      runSearch(input.value.trim().toLowerCase());
     }, 90);
   }
 
-  function open() {
+  // `query` opens the modal on a term rather than on an empty field — the doc
+  // footer's tags use it, so a tag lands on its results instead of on a blank
+  // search. select() leaves it highlighted, so typing still replaces it.
+  function open(query) {
     lastFocus = document.activeElement;
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
     loadIndex();
+    if (query) {
+      input.value = query;
+      runSearch(query.trim().toLowerCase());
+    }
     setTimeout(function () { input.focus(); input.select(); }, 20);
   }
   function close() {
@@ -159,7 +171,10 @@
   }
 
   $$("[data-search-open]").forEach(function (b) {
-    b.addEventListener("click", function (e) { e.preventDefault(); open(); });
+    b.addEventListener("click", function (e) {
+      e.preventDefault();
+      open(b.getAttribute("data-search-open"));
+    });
   });
   $$("[data-search-close]").forEach(function (b) {
     b.addEventListener("click", close);
