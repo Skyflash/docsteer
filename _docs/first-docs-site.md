@@ -2,7 +2,8 @@
 title: Your first docs site
 category: Getting started
 description: From the cloned theme to your own published documentation, in seven steps.
-updated: 2026-09-01
+date: 2026-09-01
+last_modified_at: 2026-09-01
 read_time: 8
 tags: [tutorial, getting-started, docs]
 ---
@@ -83,7 +84,7 @@ Create `_docs/getting-started.md`:
 title: Getting started
 category: Getting started
 description: Install Acme and make your first API call in five minutes.
-updated: 2026-09-01
+last_modified_at: 2026-09-01
 tags: [install, quickstart]
 ---
 

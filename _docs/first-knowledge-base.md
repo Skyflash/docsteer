@@ -2,7 +2,8 @@
 title: Your first knowledge base
 category: Getting started
 description: Turn the theme into a searchable help centre, with categories, articles and a FAQ.
-updated: 2026-09-01
+date: 2026-09-01
+last_modified_at: 2026-09-01
 read_time: 9
 tags: [tutorial, getting-started, knowledge-base, support]
 ---
@@ -136,7 +137,7 @@ Create `_kb/reset-password.md`:
 title: Reset your password
 category: Account & billing
 description: What to do when you cannot sign in and the reset email never arrives.
-updated: 2026-09-01
+last_modified_at: 2026-09-01
 tags: [password, login, email, 403]
 ---
 

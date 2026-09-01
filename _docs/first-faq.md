@@ -2,7 +2,8 @@
 title: Your first FAQ
 category: Getting started
 description: From a single FAQ page to a searchable repository of hundreds of questions.
-updated: 2026-09-01
+date: 2026-09-01
+last_modified_at: 2026-09-01
 read_time: 9
 tags: [faq, tutorial, search, support]
 ---

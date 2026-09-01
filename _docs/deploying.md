@@ -2,7 +2,8 @@
 title: Deploying
 category: Reference
 description: Ship the site to GitHub Pages, Netlify, Vercel or any static host.
-updated: 2026-09-01
+date: 2026-09-01
+last_modified_at: 2026-09-01
 tags: [deploy, github-pages, netlify, ci]
 ---
 

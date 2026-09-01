@@ -2,7 +2,8 @@
 title: Introduction
 category: Getting started
 description: What DocSteer is, who it is for, and how it is put together.
-updated: 2026-09-01
+date: 2026-09-01
+last_modified_at: 2026-09-01
 tags: [overview, jekyll, theme]
 ---
 

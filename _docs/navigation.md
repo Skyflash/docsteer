@@ -2,7 +2,8 @@
 title: Navigation
 category: Customisation
 description: Configure the top navbar and the grouped sidebar from one data file.
-updated: 2026-09-01
+date: 2026-09-01
+last_modified_at: 2026-09-01
 tags: [navigation, sidebar, menu]
 ---
 

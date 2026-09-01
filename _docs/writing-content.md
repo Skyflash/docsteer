@@ -2,7 +2,8 @@
 title: Writing content
 category: Customisation
 description: Markdown conventions, callouts, code blocks and images.
-updated: 2026-09-01
+date: 2026-09-01
+last_modified_at: 2026-09-01
 tags: [markdown, callouts, content]
 ---
 
@@ -15,7 +16,8 @@ DocSteer uses **kramdown (GFM)** with **Rouge** highlighting.
 title: Page title            # required
 category: Guides             # shown as the eyebrow + search breadcrumb
 description: One-line summary # SEO + search excerpt
-updated: 2026-09-01          # shown in the meta row
+date: 2026-09-01             # published; also datePublished in JSON-LD
+last_modified_at: 2026-09-01 # shown in the meta row + dateModified
 read_time: 4                 # optional, minutes
 tags: [tag-a, tag-b]
 toc: true                    # set false to hide the TOC

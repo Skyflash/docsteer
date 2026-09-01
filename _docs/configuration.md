@@ -2,7 +2,8 @@
 title: Configuration
 category: Getting started
 description: Every option under the docsteer key in _config.yml.
-updated: 2026-09-01
+date: 2026-09-01
+last_modified_at: 2026-09-01
 tags: [config, options, yaml]
 ---
 

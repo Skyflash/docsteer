@@ -2,7 +2,8 @@
 title: Installation
 category: Getting started
 description: Get a local copy running in about two minutes.
-updated: 2026-09-01
+date: 2026-09-01
+last_modified_at: 2026-09-01
 tags: [install, ruby, bundler]
 ---
 

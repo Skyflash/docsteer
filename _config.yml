@@ -153,6 +153,8 @@ defaults:
   - scope: { path: "", type: "docs" }
     values:
       layout: doc
+      seo:
+        type: TechArticle
   - scope: { path: "" }
     values:
       layout: page

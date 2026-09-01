@@ -3,7 +3,12 @@ title: FAQ
 layout: faq
 category: Reference
 description: Common questions about DocSteer.
-updated: 2026-09-01
+# The page's structured data is the FAQPage block the faq layout emits.
+# Without this, the collection default would also label it a TechArticle.
+seo:
+  type: WebPage
+date: 2026-09-01
+last_modified_at: 2026-09-01
 tags: [faq, help, troubleshooting]
 faq:
   # ── Licence and cost ────────────────────────────────────────

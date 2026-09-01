@@ -2,7 +2,8 @@
 title: Live search
 category: Features
 description: How the client-side search index is built and tuned.
-updated: 2026-09-01
+date: 2026-09-01
+last_modified_at: 2026-09-01
 tags: [search, json, performance]
 ---
 

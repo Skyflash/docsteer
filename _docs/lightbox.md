@@ -2,7 +2,8 @@
 title: Image lightbox
 category: Features
 description: Zoomable content images with galleries, captions and keyboard nav.
-updated: 2026-09-01
+date: 2026-09-01
+last_modified_at: 2026-09-01
 tags: [lightbox, images, media]
 ---
 

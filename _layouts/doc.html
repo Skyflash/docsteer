@@ -10,9 +10,18 @@ layout: default
       {% if page.description %}<p class="doc-head__lead">{{ page.description }}</p>{% endif %}
 
       <div class="doc-head__meta">
-        {% if page.updated or page.date %}
+        {%- comment -%}
+          `last_modified_at` is the field jekyll-seo-tag reads for dateModified,
+          so using it here keeps this row and the structured data on one source.
+          `updated` is kept as a fallback for pages written against DocSteer 1.0.
+          `page.date` is last on purpose: Jekyll invents one equal to the build
+          time for collection documents that have none, so it is a date only in
+          the sense that it parses.
+        {%- endcomment -%}
+        {%- assign doc_date = page.last_modified_at | default: page.updated | default: page.date -%}
+        {% if doc_date %}
           <span><i class="fa-regular fa-clock" aria-hidden="true"></i>
-            Updated {{ page.updated | default: page.date | date: "%b %-d, %Y" }}</span>
+            Updated {{ doc_date | date: "%b %-d, %Y" }}</span>
         {% endif %}
         {% if page.read_time %}
           <span><i class="fa-regular fa-file-lines" aria-hidden="true"></i> {{ page.read_time }} min read</span>
