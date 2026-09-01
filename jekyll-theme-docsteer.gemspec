@@ -33,9 +33,9 @@ Gem::Specification.new do |spec|
   demo_only = %w[
     assets/images/og-default.png
     assets/images/screenshot.png
-    assets/images/sample-layout-aqua.svg
-    assets/images/sample-layout-violet.svg
-    assets/images/sample-layout-mint.svg
+    assets/images/sample-1.svg
+    assets/images/sample-2.svg
+    assets/images/sample-3.svg
   ]
 
   spec.files = `git ls-files -z`.split("\x0").select { |f|

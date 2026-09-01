@@ -28,6 +28,15 @@
   box-shadow: 0 24px 80px hsl(0 0% 0% / .5);
   animation: pop .18s var(--ease);
 }
+// An SVG carrying only a viewBox has no intrinsic size, so the rules above —
+// which cap, never grow — leave it at the browser's 300x150 default: it would
+// open SMALLER than it appears in the page. Raster images are deliberately not
+// covered, since stretching them would just upscale a small screenshot into a
+// blurry mess. Authors can also avoid this by putting width/height on the SVG.
+.lightbox__img[src$=".svg"] {
+  width: min(1100px, 94vw);
+  height: auto;
+}
 .lightbox__caption { color: hsl(0 0% 100% / .82); font-size: .88rem; text-align: center; }
 
 .lightbox__btn {

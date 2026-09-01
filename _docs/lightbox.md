@@ -51,18 +51,21 @@ Three images, so they form a gallery. Click any one, then use
 <kbd>←</kbd> / <kbd>→</kbd> to move between them and <kbd>Esc</kbd> to close.
 Each shows the same layout in a different skin.
 
-![The DocSteer layout in the aqua skin, light mode]({{ '/assets/images/sample-layout-aqua.svg' | relative_url }})
+![Figure 1, aqua skin]({{ '/assets/images/sample-1.svg' | relative_url }})
 
-![The DocSteer layout in the violet skin, dark mode]({{ '/assets/images/sample-layout-violet.svg' | relative_url }})
+![Figure 2, violet skin]({{ '/assets/images/sample-2.svg' | relative_url }})
 
-![The DocSteer layout in the mint skin, light mode]({{ '/assets/images/sample-layout-mint.svg' | relative_url }})
+![Figure 3, mint skin]({{ '/assets/images/sample-3.svg' | relative_url }})
 
-<div class="callout callout--note">
-  <span class="callout__icon"><i class="fa-solid fa-circle-info"></i></span>
+<div class="callout callout--warning">
+  <span class="callout__icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
   <div>
-    <p class="callout__title">These are served from the theme</p>
-    <p>They are local SVG files, not calls to a placeholder service. A theme
-    that bundles its icons so a site works offline and behind a corporate
-    firewall should not then fetch its own demo images from a third party.</p>
+    <p class="callout__title">Give SVGs a width and height</p>
+    <p>An SVG carrying only a <code>viewBox</code> has no intrinsic size, so the
+    browser falls back to 300×150 — and since the lightbox caps size rather than
+    forcing it, such an image opens <em>smaller</em> than it looked in the page.
+    Put <code>width</code> and <code>height</code> on the <code>&lt;svg&gt;</code>
+    element and the problem disappears. The theme also carries a fallback rule
+    for SVGs that lack them.</p>
   </div>
 </div>
