@@ -12,7 +12,7 @@ For a theme, that means:
 - **Minor** — new options, layouts or components that existing sites can ignore.
 - **Patch** — fixes and documentation that change nothing you have configured.
 
-## [Unreleased]
+## [1.1.1] — 2026-09-01
 
 ### Fixed
 
@@ -116,5 +116,6 @@ First public release.
 - FAQ question anchors are derived from the question text, so rewording a
   question changes its URL fragment and breaks existing deep links.
 
+[1.1.1]: https://github.com/Skyflash/docsteer/releases/tag/v1.1.1
 [1.1.0]: https://github.com/Skyflash/docsteer/releases/tag/v1.1.0
 [1.0.0]: https://github.com/Skyflash/docsteer/releases/tag/v1.0.0

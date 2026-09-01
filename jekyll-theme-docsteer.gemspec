@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   # Follows the Jekyll theme naming convention (cf. jekyll-theme-primer).
   # Users then write `theme: jekyll-theme-docsteer` in their _config.yml.
   spec.name          = "jekyll-theme-docsteer"
-  spec.version       = "1.1.0"
+  spec.version       = "1.1.1"
   spec.authors       = ["Cristian Castellari"]
   spec.email         = ["c.castellari@gmail.com"]
 
