@@ -58,6 +58,30 @@ breaks the deploy with:
 > Your bundle only supports platforms ["x64-mingw-ucrt"] but your local platform
 > is x86_64-linux.
 
+### The custom domain is not this repository's to declare
+
+The site is served from `cristiancastellari.it/docsteer/`, but that domain is
+**not** configured on this repository. `GET /repos/Skyflash/docsteer/pages`
+reports `cname: null`; the domain is set on the user page
+(`Skyflash/skyflash.github.io`) and every project page under the account
+inherits it.
+
+So do **not** add a `CNAME` file here, however much the missing file looks like
+an oversight. A `CNAME` in a project repository claims the domain for that
+project site, which would take it away from the user page.
+
+What does belong here is `url:` in `_config.yml`, which must name the host
+readers land on. `skyflash.github.io` 301-redirects to the custom domain, so
+pointing `url:` at it made every canonical, `og:url` and sitemap `<loc>` on the
+site reference an address that bounces somewhere else.
+
+### Enforce HTTPS is off
+
+`GET /repos/Skyflash/docsteer/pages` reports `https_enforced: false`, and
+`http://cristiancastellari.it/docsteer/` serves 200 rather than redirecting.
+HTTPS works, it just is not required. The toggle is in the repository's
+Settings → Pages, and needs the domain's DNS to be fully verified first.
+
 ### FAQ anchors are derived from question text
 
 Rewording a question in a `layout: faq` page changes its URL fragment and breaks

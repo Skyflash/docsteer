@@ -9,8 +9,13 @@ description: >-
   help centres and internal knowledge bases. Live search, six colour skins
   with dark mode, image lightbox, auto table of contents and SEO ready.
 
-# Absolute URL of the deployed site (no trailing slash)
-url: "https://skyflash.github.io"
+# Absolute URL of the deployed site (no trailing slash). This is what
+# jekyll-seo-tag and jekyll-sitemap build canonical, og:url and <loc> from, so
+# it has to be the host readers actually land on — not the one that redirects
+# there. skyflash.github.io serves a 301 to cristiancastellari.it, inherited
+# from the user page's custom domain, so every absolute URL must use the
+# latter or the whole site declares a canonical that bounces.
+url: "https://cristiancastellari.it"
 # Sub-path of the site, e.g. /docsteer — leave "" for a user/organisation page
 baseurl: "/docsteer"
 
