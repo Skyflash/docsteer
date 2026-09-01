@@ -191,6 +191,7 @@ exclude:
   - node_modules
   - README.md
   - CHANGELOG.md
+  - ROADMAP.md
   - LICENSE
   - screenshots
   - "*.gemspec"

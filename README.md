@@ -100,6 +100,12 @@ GitHub Pages (via Actions), Netlify, Vercel, Cloudflare Pages — see
 (`footer.show_credit: false` to remove it).
 Font Awesome is under its own [Free License](https://fontawesome.com/license/free).
 
+## Roadmap
+
+Planned work, deferred decisions and the release checklist live in
+[`ROADMAP.md`](ROADMAP.md). Released changes are in
+[`CHANGELOG.md`](CHANGELOG.md).
+
 ## Support
 
 If DocSteer saved you time, you can
