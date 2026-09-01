@@ -82,6 +82,33 @@ site reference an address that bounces somewhere else.
 HTTPS works, it just is not required. The toggle is in the repository's
 Settings → Pages, and needs the domain's DNS to be fully verified first.
 
+### Tags are navigation, so they have to group something
+
+Since 1.1.0 a tag in the doc footer is a button that opens the search on that
+tag. That turns a tag matching one page into a dead end: the reader clicks,
+gets a list holding the single page they could have reached directly, and
+clicks again. The vocabulary was pruned from 40 tags to 9 for that reason.
+
+Before adding a tag, check it earns its place:
+
+- it groups **at least two** pages, and
+- it says something `category:` does not already say — which is why
+  `getting-started` was dropped despite being used twice.
+
+A concept that names exactly one page needs no tag: it is already in that
+page's title and body, and search finds it there.
+
+### A tag on a FAQ page costs more than elsewhere
+
+Every question on a `layout: faq` page is its own entry in `search.json` and
+inherits the **page's** tags (see the `item.tags` in the FAQ branch of
+`search.json`). A FAQ carrying four tags therefore contributes a dozen-plus
+entries to each of them, and a tag search that should return three pages
+returns a modal of unrelated questions instead.
+
+Keep FAQ pages to the one or two tags where those question entries are the
+result you actually want.
+
 ### FAQ anchors are derived from question text
 
 Rewording a question in a `layout: faq` page changes its URL fragment and breaks
@@ -140,11 +167,22 @@ exists to illustrate the docs — not to power the theme — belongs in it.
 7. `git tag -a vX.Y.Z -m "…"` and `git push origin vX.Y.Z`.
 8. Draft the GitHub release from that tag, pasting the changelog section. Do
    **not** use "Generate release notes" — it overwrites it with a commit list.
-9. `gem build jekyll-theme-docsteer.gemspec`, then **inspect the contents
-   before pushing** — a published version can never be replaced, only yanked:
-   ```bash
-   ruby -e 'require "rubygems/package"; puts Gem::Package.new("jekyll-theme-docsteer-X.Y.Z.gem").spec.files'
+9. `gem build jekyll-theme-docsteer.gemspec` **from the repository root**, then
+   **inspect the contents before pushing** — a published version can never be
+   replaced, only yanked:
+   ```powershell
+   gem specification jekyll-theme-docsteer-X.Y.Z.gem version
+   (gem specification jekyll-theme-docsteer-X.Y.Z.gem files | Where-Object { $_ -match '^- ' }).Count
    ```
+   The count must be non-zero (51 at 1.1.0). `spec.files` comes from
+   `git ls-files`, so building anywhere outside the working tree produces a gem
+   with **no files at all** — and `gem build` reports it as a single
+   `WARNING: no files specified` in the middle of an otherwise successful run.
+   Pushing that publishes an empty version of the theme.
+
+   Use `gem specification` rather than a `ruby -e` one-liner: the nested quoting
+   in the latter does not survive PowerShell and fails silently, printing
+   nothing, which reads exactly like an empty gem.
 10. `gem push jekyll-theme-docsteer-X.Y.Z.gem`.
 11. The `docsteer` alias gem only needs a release if its `~> 1.0` requirement
     stops covering the new version — that is, at 2.0.0.
