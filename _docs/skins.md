@@ -4,7 +4,7 @@ category: Customisation
 description: The six built-in palettes, and how to tweak or add your own.
 date: 2026-09-01
 last_modified_at: 2026-09-01
-tags: [skins, colours, theming, css-variables]
+tags: [theming]
 ---
 
 DocSteer ships **six skins**, each defined as a light + dark palette.

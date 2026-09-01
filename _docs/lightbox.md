@@ -4,7 +4,7 @@ category: Features
 description: Zoomable content images with galleries, captions and keyboard nav.
 date: 2026-09-01
 last_modified_at: 2026-09-01
-tags: [lightbox, images, media]
+tags: [content]
 ---
 
 Every image inside the article body becomes a **click-to-zoom** target. No

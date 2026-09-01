@@ -4,7 +4,7 @@ category: Customisation
 description: Markdown conventions, callouts, code blocks and images.
 date: 2026-09-01
 last_modified_at: 2026-09-01
-tags: [markdown, callouts, content]
+tags: [content]
 ---
 
 DocSteer uses **kramdown (GFM)** with **Rouge** highlighting.

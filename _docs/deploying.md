@@ -4,7 +4,7 @@ category: Reference
 description: Ship the site to GitHub Pages, Netlify, Vercel or any static host.
 date: 2026-09-01
 last_modified_at: 2026-09-01
-tags: [deploy, github-pages, netlify, ci]
+tags: [setup]
 ---
 
 The build output is a plain static site in `_site/` — host it anywhere.

@@ -4,7 +4,7 @@ category: Features
 description: How the client-side search index is built and tuned.
 date: 2026-09-01
 last_modified_at: 2026-09-01
-tags: [search, json, performance]
+tags: [search, performance]
 ---
 
 Search is **100% client-side** and needs no service. At build time Jekyll

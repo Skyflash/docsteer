@@ -4,7 +4,7 @@ category: Getting started
 description: Every option under the docsteer key in _config.yml.
 date: 2026-09-01
 last_modified_at: 2026-09-01
-tags: [config, options, yaml]
+tags: [setup, theming]
 ---
 
 All theme options live under a single `docsteer:` key in `_config.yml`.

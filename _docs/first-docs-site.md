@@ -5,7 +5,7 @@ description: From the cloned theme to your own published documentation, in seven
 date: 2026-09-01
 last_modified_at: 2026-09-01
 read_time: 8
-tags: [tutorial, getting-started, docs]
+tags: [tutorial, setup, navigation]
 ---
 
 [Installation]({{ '/docs/installation/' | relative_url }}) left you with **DocSteer's own demo site**

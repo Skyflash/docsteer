@@ -5,7 +5,7 @@ description: From a single FAQ page to a searchable repository of hundreds of qu
 date: 2026-09-01
 last_modified_at: 2026-09-01
 read_time: 9
-tags: [faq, tutorial, search, support]
+tags: [tutorial, faq, support, search]
 ---
 
 A FAQ starts as one page and, if the product is any good, does not stay that

@@ -9,7 +9,7 @@ seo:
   type: WebPage
 date: 2026-09-01
 last_modified_at: 2026-09-01
-tags: [faq, help, troubleshooting]
+tags: [faq]
 faq:
   # ── Licence and cost ────────────────────────────────────────
   - section: Licence and cost

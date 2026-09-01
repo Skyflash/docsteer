@@ -4,7 +4,7 @@ category: Getting started
 description: What DocSteer is, who it is for, and how it is put together.
 date: 2026-09-01
 last_modified_at: 2026-09-01
-tags: [overview, jekyll, theme]
+tags: [setup]
 ---
 
 **DocSteer** is a Jekyll theme for **technical documentation, support portals

@@ -4,7 +4,7 @@ category: Getting started
 description: Get a local copy running in about two minutes.
 date: 2026-09-01
 last_modified_at: 2026-09-01
-tags: [install, ruby, bundler]
+tags: [setup]
 ---
 
 ## Requirements

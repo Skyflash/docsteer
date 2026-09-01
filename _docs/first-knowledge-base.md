@@ -5,7 +5,7 @@ description: Turn the theme into a searchable help centre, with categories, arti
 date: 2026-09-01
 last_modified_at: 2026-09-01
 read_time: 9
-tags: [tutorial, getting-started, knowledge-base, support]
+tags: [tutorial, support, search]
 ---
 
 A knowledge base is not a manual. Nobody reads it front to back — they arrive

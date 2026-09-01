@@ -4,7 +4,7 @@ category: Features
 description: What ships for search engines and how the theme stays fast.
 date: 2026-09-01
 last_modified_at: 2026-09-01
-tags: [seo, performance, lighthouse, meta]
+tags: [performance]
 ---
 
 ## SEO

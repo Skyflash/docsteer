@@ -4,7 +4,7 @@ category: Customisation
 description: Configure the top navbar and the grouped sidebar from one data file.
 date: 2026-09-01
 last_modified_at: 2026-09-01
-tags: [navigation, sidebar, menu]
+tags: [navigation, theming]
 ---
 
 Navigation lives in **`_data/navigation.yml`** — two lists, `main` and
