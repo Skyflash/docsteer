@@ -4,8 +4,8 @@
 framework-free Jekyll theme for technical documentation, help centres and
 internal wikis.
 
-[**Live demo**](https://Skyflash.github.io/docsteer) ·
-[Documentation](https://Skyflash.github.io/docsteer/docs/introduction/) ·
+[**Live demo**](https://cristiancastellari.it/docsteer/) ·
+[Documentation](https://cristiancastellari.it/docsteer/docs/introduction/) ·
 MIT licensed
 
 ![DocSteer](assets/images/screenshot.png)
@@ -45,7 +45,7 @@ Then:
 2. Pick a skin: `docsteer: { skin: violet }`.
 3. Add pages to **`_docs/`** and list them in **`_data/navigation.yml`**.
 
-Full guide: [`/docs/introduction/`](https://Skyflash.github.io/docsteer/docs/introduction/).
+Full guide: [`/docs/introduction/`](https://cristiancastellari.it/docsteer/docs/introduction/).
 
 ## Project layout
 
@@ -66,7 +66,7 @@ _docs/                   the theme's own documentation (sample content)
 ## Configuration
 
 See [`_docs/configuration.md`](_docs/configuration.md) or the rendered
-[Configuration page](https://Skyflash.github.io/docsteer/docs/configuration/).
+[Configuration page](https://cristiancastellari.it/docsteer/docs/configuration/).
 Highlights:
 
 ```yaml
