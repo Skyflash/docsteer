@@ -26,6 +26,7 @@ For a theme, that means:
 ### Changed
 
 - `.gitignore`: ignore `SEO-REPORT.md`, the local report written by the weekly SEO Monitor.
+- Claude Code skills are now versioned in `.claude/skills/` (installed with `npx autoskills -a claude-code`), so they are available on every machine.
 
 ## [1.1.0] — 2026-09-01
 
