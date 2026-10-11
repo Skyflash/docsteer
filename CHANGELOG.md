@@ -23,6 +23,10 @@ For a theme, that means:
   for CSS and JS, since the index changes with your content and not with the
   theme.
 
+### Changed
+
+- `.gitignore`: ignore `SEO-REPORT.md`, the local report written by the weekly SEO Monitor.
+
 ## [1.1.0] — 2026-09-01
 
 Mobile navigation fixes, clickable tags, and correct structured data.
