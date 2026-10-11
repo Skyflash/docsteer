@@ -1,7 +1,7 @@
 ---
 layout: home
 title: DocSteer
-description: Simple, searchable docs and knowledge bases for teams — a fast Jekyll theme.
+description: Free Jekyll documentation theme for simple, searchable docs and knowledge bases — live search, six colour skins and dark mode.
 hero:
   eyebrow: Jekyll theme
   title: Simple, searchable docs for teams
