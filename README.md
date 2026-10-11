@@ -1,5 +1,7 @@
 # DocSteer
 
+[![Jekyll Themes Shield](https://img.shields.io/badge/featured%20on-JT-red.svg)](https://jekyll-themes.com/skyflash/docsteer)
+
 **Simple, searchable docs and knowledge bases for teams** — a fast,
 framework-free Jekyll theme for technical documentation, help centres and
 internal wikis.
